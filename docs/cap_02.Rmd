@@ -1,0 +1,8 @@
+## Capitulo 2
+
+```{r}
+set.seed(1)
+hist(rnorm(100), main = "Ejemplo Capítulo 1", col = "orange", border = "white")
+```
+
+### GRÁFICO DE BARRAS

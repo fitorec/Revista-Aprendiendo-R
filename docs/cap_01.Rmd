@@ -1,0 +1,38 @@
+
+\newpage
+
+# Introducción
+
+Este es un ejemplo de **reporte generado con R Markdown**.  
+Podemos incluir texto, código en R y fórmulas matemáticas.
+
+Por ejemplo, una fórmula de distribución normal:
+
+$$
+f(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}}
+$$
+
+---
+
+# Generando datos y gráficos
+
+A continuación, generamos unos datos aleatorios y su histograma.
+
+```{r, echo=TRUE}
+# Generamos datos normales
+set.seed(123)
+datos <- rnorm(1000, mean = 50, sd = 10)
+
+# Resumen estadístico
+summary(datos)
+
+# Histograma
+hist(
+  datos,
+  col = "skyblue",
+  border = "white",
+  main = "Histograma de datos normales",
+  xlab = "Valores"
+)
+```
+
