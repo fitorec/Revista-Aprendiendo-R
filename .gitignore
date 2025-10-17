@@ -2,6 +2,9 @@
 .Rhistory
 .Rapp.history
 
+# PDFs
+*.pdf
+
 # Session Data files
 .RData
 .RDataTmp

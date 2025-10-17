@@ -1,0 +1,42 @@
+name: Generar reporte PDF
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-pdf:
+    name: Construir PDF con RMarkdown
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: 🧰 Instalar R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.3'
+
+      - name: 📦 Instalar dependencias del sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev \
+                                  libfontconfig1-dev libfreetype6-dev libpng-dev \
+                                  libtiff5-dev libjpeg-dev texlive-xetex texlive-fonts-recommended \
+                                  texlive-fonts-extra texlive-latex-extra pandoc
+
+      - name: 📚 Instalar paquetes de R necesarios
+        run: |
+          Rscript -e 'install.packages(c("rmarkdown", "yaml"), repos="https://cloud.r-project.org")'
+
+      - name: 🏗️ Construir el reporte PDF
+        run: make build
+
+      - name: 📦 Subir artefacto PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-pdf
+          path: reporte.pdf
