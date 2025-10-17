@@ -1,42 +1,24 @@
-# --------------------------------------------------
-# Makefile para generar reporte PDF desde R Markdown
-# --------------------------------------------------
+# GNUmakefile
 
-# Archivos principales
-RMD = reporte.Rmd
-PDF = $(RMD:.Rmd=.pdf)
-
-# Comandos
-RSCRIPT = Rscript
-RM = rm -f
+# Variables
+REPORTE = reporte.pdf
+SCRIPT = build_reporte.R
+CAPITULOS = $(wildcard docs/*.Rmd)
+# PORTADA = portada.Rmd
 
 # Objetivo por defecto
-.DEFAULT_GOAL := help
-
-# --------------------------
-# Ayuda
-# --------------------------
 help:
-	@echo "Uso:"
-	@echo "  make build    -> Genera el PDF a partir de $(RMD)"
-	@echo "  make clean    -> Elimina archivos intermedios y el PDF"
-	@echo "  make help     -> Muestra esta ayuda (por defecto)"
+	@echo "Targets disponibles:"
+	@echo "  build  - Construye el PDF del reporte"
+	@echo "  clean  - Limpia los archivos generados"
 
-# --------------------------
-# Construir el reporte
-# --------------------------
-# ---------------------------
-# Objetivo: Construir
-# ---------------------------
-build: $(PDF)
+# Construir el PDF
+build: $(REPORTE)
+
+$(REPORTE): $(SCRIPT) $(CAPITULOS)
 	@echo "📘 Generando reporte..."
-	@$(RSCRIPT) build_reporte.R
-	@echo "✅ Reporte generado: $(PDF)"
+	Rscript $(SCRIPT)
 
-# --------------------------
-# Limpiar archivos
-# --------------------------
+# Limpiar
 clean:
-	@echo "🧹 Limpiando archivos..."
-	@$(RM) $(PDF) $(RMD:.Rmd=.html) $(RMD:.Rmd=.md)
-	@echo "✔ Limpieza completada"
+	rm -f $(REPORTE)
