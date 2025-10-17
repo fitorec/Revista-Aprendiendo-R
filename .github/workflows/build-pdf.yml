@@ -28,11 +28,11 @@ jobs:
                                   libtiff5-dev libjpeg-dev texlive-xetex texlive-fonts-recommended \
                                   texlive-fonts-extra texlive-latex-extra pandoc
 
-      - name: 📚 Instalar paquetes de R necesarios
+      - name: 📀 Instalar paquetes de R necesarios
         run: |
           Rscript -e 'install.packages(c("rmarkdown", "yaml"), repos="https://cloud.r-project.org")'
 
-      - name: 🏗️ Construir el reporte PDF
+      - name: 📄 Construir el reporte PDF
         run: make build
 
       - name: 📦 Subir artefacto PDF

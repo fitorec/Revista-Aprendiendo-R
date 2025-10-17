@@ -1,0 +1,45 @@
+name: Build and Release Reporte PDF
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Ejecuta solo cuando haces push de una etiqueta tipo v1.0.0
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install dependencies
+        run: |
+          Rscript -e 'install.packages(c("rmarkdown", "yaml"))'
+
+      - name: Build PDF
+        run: make build
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "Reporte ${{ github.ref_name }}"
+          body: |
+            📘 Reporte generado automáticamente.
+            Fecha: ${{ github.event.head_commit.timestamp }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload PDF to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: reporte.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
