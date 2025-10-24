@@ -1,24 +1,30 @@
-# GNUmakefile
-
+# Author: Miguel Angel Marcial Martínez - @Fitorec
+#
+#        __
+#     -=(o '.
+#        '.-.\
+#        /|  \\
+#        '|  ||
+#         _\_):,_
+#
 # Variables
-REPORTE = reporte.pdf
-SCRIPT = build_reporte.R
-CAPITULOS = $(wildcard docs/*.Rmd)
-# PORTADA = portada.Rmd
+SCRIPT = build_magazine.R
+CAPITULOS = $(wildcard capitulos/*.Rmd)
 
 # Objetivo por defecto
 help:
-	@echo "Targets disponibles:"
-	@echo "  build  - Construye el PDF del reporte"
-	@echo "  clean  - Limpia los archivos generados"
+	@echo "Comandos disponibles:"
+	@echo "  make build   → Limpia y construye el PDF"
+	@echo "  make clean   → Elimina archivos generados"
 
-# Construir el PDF
-build: $(REPORTE)
+# Limpiar archivos generados
+clean:
+	@echo "🧹 Limpiando archivos temporales..."
+	rm -f *.pdf reporte_tmp.Rmd reporte_tmp.knit.md reporte.tex
 
-$(REPORTE): $(SCRIPT) $(CAPITULOS)
+
+# Construir el PDF (siempre limpia antes)
+build:
+	@$(MAKE) clean
 	@echo "📘 Generando reporte..."
 	Rscript $(SCRIPT)
-
-# Limpiar
-clean:
-	rm -f $(REPORTE)

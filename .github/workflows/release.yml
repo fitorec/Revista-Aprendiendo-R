@@ -55,6 +55,6 @@ jobs:
       - name: 📤 Upload PDF to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: reporte.pdf
+          files: magazine.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

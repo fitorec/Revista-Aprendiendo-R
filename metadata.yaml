@@ -1,6 +1,9 @@
-tituloPDF: "Informe Técnico de Ejemplo"
-autorPDF: "Miguel Ángel"
+tituloPDF: "Mis primeros pasos con R-Markdown"
+autoresPDF:
+  - Ing. Miguel Angel Marcial Martínez
+  - Dra. Betzabeth Ambrocio López
 materiaPDF: "Análisis de Datos"
 profesorPDF: "Marisol Lopez Cerino"
 asuntoPDF: "Plantilla para reportes con RMarkdown"
 fechaPDF: "2025-10-15"
+repositorioPDF: "https://github.com/fitorec/plantilla-doc-rmarkdown"

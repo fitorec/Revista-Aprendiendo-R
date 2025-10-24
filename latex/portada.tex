@@ -1,0 +1,34 @@
+\clearpage
+\thispagestyle{empty}
+\onecolumn
+
+% Fondo de portada a página completa
+\AddToShipoutPictureBG*{
+  \put(0,0){
+    \parbox[b][\paperheight]{\paperwidth}{
+      \vfill
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{img/fondo_portada.png}%
+      \vfill
+    }
+  }
+}
+
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{img/logo.png}\par\vspace{1cm}
+
+  \Huge\bfseries Revista de Aprendizaje en R \\
+  \vspace{0.5cm}
+  \Large\itshape Ciencia de Datos y Estadística Aplicada \\[2cm]
+  
+  \Huge\bfseries \tituloPDF \par
+  \rule{0.8\textwidth}{1pt}\par\vspace{2cm}
+
+  \large Universidad Tecnológica de la Mixteca \\[0.5cm]
+  \textit{"Labor et Sapientia Libertas" - "Chun quiaa Tiaha sihi Nillao"} \\
+  \textbf{El trabajo y la sabiduría nos dan libertad} \\[1.5cm]
+
+  \textit{Edición especial: Explorando la Ciencia con R} \\[0.5cm]
+  \today
+\end{center}
+
+\clearpage

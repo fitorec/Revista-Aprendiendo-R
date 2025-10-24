@@ -25,29 +25,38 @@ output:
     highlight: breezedark
     latex_engine: xelatex
     includes:
-      before_body: portada.tex
+      in_header: latex/portada_preamble.tex
+      before_body:
+        - latex/portada.tex
+        - latex/licencia.tex
+geometry: margin=1in
+classoption: twocolumn
 "
 
 
 # 5. Crear archivo temporal
 cat(yaml_header, file = tmp_file)
 
+# Unir autores en una sola cadena para pasarlos como variable LaTeX
+autores <- paste(meta$autoresPDF, collapse = ", ")
 
 # 6. Inyectar comandos LaTeX con variables del YAML
 latex_vars <- sprintf("header-includes:
   - \\newcommand{\\tituloPDF}{%s}
-  - \\newcommand{\\autorPDF}{%s}
+  - \\newcommand{\\autoresPDF}{%s}
   - \\newcommand{\\materiaPDF}{%s}
   - \\newcommand{\\profesorPDF}{%s}
   - \\newcommand{\\asuntoPDF}{%s}
   - \\newcommand{\\fechaPDF}{%s}
+  - \\newcommand{\\repositorioPDF}{%s}
 ---\n\n",
 meta$tituloPDF,
-meta$autorPDF,
+autores,
 meta$materiaPDF,
 meta$profesorPDF,
 meta$asuntoPDF,
-meta$fechaPDF
+meta$fechaPDF,
+meta$repositorioPDF
 )
 
 cat(latex_vars, file = tmp_file, append = TRUE)

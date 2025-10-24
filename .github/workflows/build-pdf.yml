@@ -32,11 +32,11 @@ jobs:
         run: |
           Rscript -e 'install.packages(c("rmarkdown", "yaml"), repos="https://cloud.r-project.org")'
 
-      - name: 📄 Construir el reporte PDF
+      - name: 📄 Construir revista PDF
         run: make build
 
       - name: 📦 Subir artefacto PDF
         uses: actions/upload-artifact@v4
         with:
-          name: reporte-pdf
-          path: reporte.pdf
+          name: magazine-pdf
+          path: magazine.pdf
