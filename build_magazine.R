@@ -72,7 +72,7 @@ cat("\n\n", file = tmp_file, append = TRUE)
 # 8. Renderizar el reporte final
 
 cat("📘 Generando reporte...\n\n")
-render(tmp_file, output_file = "reporte.pdf")
+render(tmp_file, output_file = "magazine.pdf")
 
 #  9. Limpiar archivo temporal
 unlink(tmp_file)
