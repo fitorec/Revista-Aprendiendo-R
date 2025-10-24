@@ -20,11 +20,11 @@ help:
 # Limpiar archivos generados
 clean:
 	@echo "🧹 Limpiando archivos temporales..."
-	rm -f *.pdf reporte_tmp.Rmd reporte_tmp.knit.md reporte.tex
+	rm -f magazine.pdf reporte_tmp.Rmd reporte_tmp.knit.md reporte.tex
 
 
 # Construir el PDF (siempre limpia antes)
 build:
-	@$(MAKE) clean
+	@$(MAKE) --no-print-directory clean
 	@echo "📘 Generando reporte..."
 	Rscript $(SCRIPT)
