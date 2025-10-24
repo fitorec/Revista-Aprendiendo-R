@@ -20,6 +20,7 @@ help:
 # Limpiar archivos generados
 clean:
 	@echo "🧹 Limpiando archivos temporales..."
+	rm -f data/*export*
 	rm -f magazine.pdf reporte_tmp.Rmd reporte_tmp.knit.md reporte.tex
 
 

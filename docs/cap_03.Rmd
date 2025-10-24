@@ -1,131 +1,56 @@
-## Distribución Exponencial
+# I/O en R - Importación y Exportación de Datos
 
-La **distribución exponencial** es una de las distribuciones continuas más utilizadas en estadística, especialmente en el modelado del **tiempo entre eventos** en un proceso de tipo **Poisson**.  
+La manipulación de datos inicia con la capacidad de importar y exportar archivos en formatos comunes. En este capítulo se muestra cómo trabajar con archivos CSV y Excel, usando el dataset "Iris" como ejemplo.
 
-Por ejemplo, puede modelar:
-- El tiempo que pasa entre llegadas de clientes a una tienda.
-- El tiempo que tarda en descomponerse un componente electrónico.
-- El tiempo de espera entre llamadas telefónicas.
+El dataset que utilizaremos fue extraido de la universidad de Irving california:
 
----
+> <http://archive.ics.uci.edu/dataset/53/iris>
 
-## 1. Definición
 
-La **función de densidad de probabilidad (PDF)** de una distribución exponencial con parámetro $\lambda$ (tasa) es:
+## Importación de datos CSV
 
-\[
-f(x; \lambda) = 
-\begin{cases} 
-\lambda e^{-\lambda x}, & x \ge 0, \\
-0, & x < 0
-\end{cases}
-\]
+R incluye funciones nativas para leer archivos CSV. El siguiente código carga el archivo `iris.data.csv` en un dataframe llamado `iris_csv`:
 
-Donde:
-
-- \( \lambda > 0 \) es el parámetro de tasa (**rate** en R),
-- El valor esperado es \( E[X] = \frac{1}{\lambda} \),
-- La varianza es \( Var(X) = \frac{1}{\lambda^2} \).
-
----
-
-## 2. Funciones en R
-
-En R, las funciones relacionadas con la distribución exponencial son:
-
-| Función | Descripción |
-|----------|--------------|
-| `dexp(x, rate)` | Densidad en el punto `x` |
-| `pexp(q, rate)` | Probabilidad acumulada P(X <= q) |
-| `qexp(p, rate)` | Cuantil (valor de `x` dado `p`) |
-| `rexp(n, rate)` | Genera `n` valores aleatorios |
-
----
-
-## 3. Curva de la distribución exponencial
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-# Secuencia de valores en el eje X
-x <- seq(0, 10, by = 0.1)
-
-# Parámetros de tasa ($\lambda$)
-rates <- c(0.5, 1, 2)
-
-# Graficar curvas para diferentes valores de $\lambda$
-plot(x, dexp(x, rate = rates[1]), type = "l", lwd = 2, col = "blue",
-     ylab = "Densidad", xlab = "x", main = "Distribución Exponencial")
-lines(x, dexp(x, rate = rates[2]), col = "red", lwd = 2)
-lines(x, dexp(x, rate = rates[3]), col = "darkgreen", lwd = 2)
-legend("topright", legend = paste("lambda =", rates),
-       col = c("blue", "red", "darkgreen"), lwd = 2)
+```{r, echo=TRUE}
+# Importar archivo CSV con read.csv
+iris_csv <- read.csv("data/iris.data.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+# Mostrar las primeras filas
+head(iris_csv)
 ```
 
-> 🔍 A medida que aumenta el valor de $\lambda$, la curva se hace más “empinada” y los valores pequeños de `x` son más probables.
+## Importación de datos desde Excel
 
----
+Para leer archivos Excel, se recomienda usar el paquete `readxl`. Primero hay que instalarlo si no está instalado, y luego cargar el archivo:
 
-## 4. Función de distribución acumulada (CDF)
+```{r, echo=TRUE}
+# Instalar y cargar readxl (si es necesario)
+if (!requireNamespace("readxl", quietly = TRUE)) {
+  install.packages("readxl")
+}
+library(readxl)
 
-```{r echo=TRUE}
-plot(x, pexp(x, rate = 1), type = "l", lwd = 2, col = "purple",
-     ylab = "P(X <= x)", xlab = "x", main = "Función de Distribución Acumulada")
-grid()
+# Leer hoja Excel
+iris_xlsx <- read_excel("data/iris.data.xlsx")
+# Mostrar las primeras filas
+head(iris_xlsx)
 ```
 
-> La función acumulada muestra la probabilidad de que la variable aleatoria tome un valor menor o igual que `x`.
+## Exportación de datos
 
----
+Para guardar dataframes como CSV o Excel, se puede usar:
 
-## 5. Generación de valores aleatorios
+```{r, echo=TRUE}
+# Exportar a CSV
+write.csv(iris_csv, "data/iris_export.csv", row.names = FALSE)
 
-Podemos generar observaciones simuladas de una distribución exponencial.
-
-```{r echo=TRUE}
-set.seed(123)
-valores <- rexp(1000, rate = 1)
-
-hist(valores, breaks = 30, col = "skyblue",
-     main = "Histograma de valores simulados Exp(lambda=1)",
-     xlab = "x", freq = FALSE)
-
-# Añadimos la densidad teórica
-curve(dexp(x, rate = 1), add = TRUE, lwd = 2, col = "red")
+# Exportar a Excel (instalando paquete writexl si es necesario)
+if (!requireNamespace("writexl", quietly = TRUE)) {
+  install.packages("writexl")
+}
+library(writexl)
+write_xlsx(iris_xlsx, "data/iris_export.xlsx")
 ```
 
-> El histograma de los datos simulados se ajusta bastante bien a la curva teórica.
-
 ---
 
-## 6. Ejemplo práctico
-
-Supongamos que el tiempo entre llegadas de clientes a una tienda sigue una distribución exponencial con ( \lambda = 0.5 ).
-Queremos saber:
-
-1. La probabilidad de que llegue un cliente en menos de 3 minutos.
-2. El tiempo máximo que debemos esperar con una probabilidad del 90%.
-
-```{r echo=TRUE}
-# P(X < 3)
-p1 <- pexp(3, rate = 0.5)
-p1
-
-# Cuantil 0.9
-q1 <- qexp(0.9, rate = 0.5)
-q1
-```
-
-Interpretación:
-
-* Hay aproximadamente un 77.7% de probabilidad de que llegue un cliente en menos de 3 minutos.
-* El 90% de los clientes llegan antes de aproximadamente 4.6 minutos.
-
----
-
-## 7. Conclusión
-
-La distribución exponencial es una herramienta fundamental para modelar procesos donde los eventos ocurren de manera continua e independiente a una tasa constante.
-Su simplicidad y versatilidad la convierten en una de las distribuciones más utilizadas en ingeniería, biología, economía y análisis de tiempos de vida.
-
----
-
-**Fin del capítulo.**
+Con estos comandos básicos se puede iniciar la lectura y escritura de datos en R, facilitando la integración con otros programas y flujos de trabajo en ciencia de datos.

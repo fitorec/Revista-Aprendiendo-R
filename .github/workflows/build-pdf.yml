@@ -30,7 +30,7 @@ jobs:
 
       - name: 📀 Instalar paquetes de R necesarios
         run: |
-          Rscript -e 'install.packages(c("rmarkdown", "yaml"), repos="https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("rmarkdown", "yaml", "readxl", "writexl"), repos="https://cloud.r-project.org")'
 
       - name: 📄 Construir revista PDF
         run: make build

@@ -1,8 +1,81 @@
-## Capitulo 2
+# Markdown y R
 
-```{r}
-set.seed(1)
-hist(rnorm(100), main = "Ejemplo Capítulo 1", col = "orange", border = "white")
+## Markdown
+
+Markdown es un lenguaje de marcado ligero que permite escribir texto con formato de manera sencilla y legible, fácil de convertir a HTML u otros formatos.
+
+### Elementos básicos de Markdown
+
+#### Encabezados
+
+Se crean usando el símbolo de almohadilla `#`, uno por cada nivel:
+
+```markdown
+# Encabezado nivel 1
+## Encabezado nivel 2
+### Encabezado nivel 3
 ```
 
-### GRÁFICO DE BARRAS
+#### Texto
+
+- **Negrilla:** `**texto en negrita**` o `__texto en negrita__`
+- *Cursiva:* `*texto en cursiva*` o `_texto en cursiva_`
+- ***Negrita y cursiva:*** `***texto***`
+
+#### Citas y bloques de texto
+
+Para citas se usa `>`:
+
+```markdown
+> Esto es una cita.
+```
+
+#### Listas
+
+- No ordenadas se crean con `-`, `*` o `+`:
+
+```markdown
+- Elemento 1
+- Elemento 2
+```
+
+- Ordenadas con números y punto:
+
+```markdown
+1. Primer elemento
+2. Segundo elemento
+```
+
+#### Enlaces
+
+```markdown
+[UTM](https://utm.mx)
+```
+
+#### Imágenes
+
+```markdown
+![Texto alternativo](ruta)
+```
+
+## R Madown
+
+Es una extensión de Markdown que permite integrar fragmentos ejecutables de código R dentro del documento, facilitando la creación de reportes reproducibles que combinan texto, análisis estadístico y gráficos automáticamente.
+
+> **Nota**: Este documento esta escrito con R-Markdown.
+
+### Características principales
+
+- Mezcla de código R y narración en un solo archivo con extensión `.Rmd`.
+- Ejecución del código insertado y visualización de resultados (tablas, gráficos) directamente en el documento generado.
+- Soporte para múltiples formatos de salida: HTML, PDF, Word, presentaciones y más.
+- Uso de bloques de código delimitados por `{r} ...` donde se puede controlar la ejecución y apariencia.
+
+### Recursos para aprender más
+
+- Documentación oficial: [RMarkdown](https://rmarkdown.rstudio.com/)
+- Libro gratuito: *R Markdown: The Definitive Guide* por Yihui Xie et al.
+- Comunidades y foros especializados de R y RStudio
+- [Repositorio de este Manual R-Markdown](https://github.com/fitorec/manual-R-markdown)
+
+\onecolumn

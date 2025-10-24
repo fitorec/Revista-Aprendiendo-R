@@ -1,37 +1,110 @@
 \newpage
 
-# Introducción
+\twocolumn
 
-Este es un ejemplo de **reporte generado con R Markdown**.  
-Podemos incluir texto, código en R y fórmulas matemáticas.
+# Introducción a R
 
-Por ejemplo, una fórmula de distribución normal:
+R es un lenguaje de programación orientado al análisis estadístico, la visualización de datos y el cómputo científico. Es ampliamente utilizado en la ciencia de datos, estadística y muchas disciplinas relacionadas.
 
-$$
-f(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}}
-$$
+## Datos en R
 
----
+### Tipos de datos y objetos contenedores
 
-# Generando datos y gráficos
+En R, los tipos básicos de datos son:
 
-A continuación, generamos unos datos aleatorios y su histograma.
+- `numeric`: números (enteros o reales).
+- `character`: texto o cadenas de caracteres.
+- `logical`: valores booleanos (`TRUE`, `FALSE`).
+- `factor`: categorías o variables cualitativas.
+- `integer`: números enteros explícitos.
+
+Los objetos que contienen datos pueden ser:
+
+- **Vectores**: colección ordenada de elementos del mismo tipo.
+- **Matrices**: arreglo bidimensional de elementos del mismo tipo.
+- **Data frames**: estructuras tabulares con columnas que pueden tener distintos tipos de datos.
+- **Listas**: colección ordenada de elementos que pueden ser de diferentes tipos.
+
+### Variables y objetos
+
+Declarar variables es sencillo:
 
 ```{r, echo=TRUE}
-# Generamos datos normales
-set.seed(123)
-datos <- rnorm(1000, mean = 50, sd = 10)
+# Variable con un valor único
+edad <- 30
+nombre <- "Ana"
+esEstudiante <- TRUE
 
-# Resumen estadístico
-summary(datos)
+# Vectores
+numeros <- c(1, 2, 3, 4, 5)
+nombres <- c("Ana", "Luis", "María")
 
-# Histograma
-hist(
-  datos,
-  col = "skyblue",
-  border = "white",
-  main = "Histograma de datos normales",
-  xlab = "Valores"
+# Matriz 2x3
+matriz <- matrix(1:6, nrow = 2, ncol = 3)
+
+# Dataframe con 3 columnas y 3 filas
+df <- data.frame(
+  nombre = c("Ana", "Luis", "María"),
+  edad = c(25, 30, 35),
+  esEstudiante = c(TRUE, FALSE, TRUE)
 )
+
+# Mostrar objetos
+edad
+nombre
+esEstudiante
+numeros
+matriz
+df
 ```
 
+### Manipulación básica
+
+Acceder y modificar datos:
+
+```{r, echo=TRUE}
+# Acceder al segundo elemento del vector
+numeros
+
+# Cambiar valor del elemento 3 a 10
+numeros <- 10
+numeros
+
+# Acceder a la edad de la segunda
+# persona en el dataframe
+df$edad
+
+# Añadir una nueva fila al dataframe
+df <- rbind(
+  df,
+  data.frame(
+    nombre = "Carlos",
+    edad = 28,
+    esEstudiante = FALSE
+  )
+)
+df
+```
+
+## Funciones en R
+
+Las funciones encapsulan código que puede ser reutilizado. Se definen usando `function()`.
+
+```{r, echo=TRUE}
+# Definición de una función
+# simple para sumar dos números
+sumar <- function(a, b) {
+  resultado <- a + b
+  return(resultado)
+}
+
+# Usar la función
+sumar(5, 3)
+
+# Calcula el promedio de un vector
+promedio <- function(x) {
+  mean(x)
+}
+
+promedio(numeros)
+```

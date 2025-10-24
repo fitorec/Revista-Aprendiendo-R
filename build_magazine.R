@@ -30,7 +30,6 @@ output:
         - latex/portada.tex
         - latex/licencia.tex
 geometry: margin=1in
-classoption: twocolumn
 "
 
 
