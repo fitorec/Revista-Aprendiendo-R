@@ -115,7 +115,7 @@ Proyecto iniciado por **Ing. Miguel Angel Marcial Martínez (@Fitorec)**
 y abierto a toda persona interesada en aprender, enseñar o divulgar sobre R.
 
 Repositorio oficial:
-🔗 [https://github.com/fitorec/plantilla-doc-rmarkdown](https://github.com/fitorec/plantilla-doc-rmarkdown)
+🔗 [https://github.com/fitorec/manual-R-markdown](https://github.com/fitorec/manual-R-markdown)
 
 ---
 
