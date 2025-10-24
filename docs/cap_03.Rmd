@@ -2,9 +2,11 @@
 
 La manipulación de datos inicia con la capacidad de importar y exportar archivos en formatos comunes. En este capítulo se muestra cómo trabajar con archivos CSV y Excel, usando el dataset "Iris" como ejemplo.
 
-El dataset que utilizaremos fue extraido de la universidad de Irving california:
+El dataset que utilizaremos fue extraido de la [universidad de Irvine california](https://archive.ics.uci.edu/):
 
-> <http://archive.ics.uci.edu/dataset/53/iris>
+> **Fuente original**: <http://archive.ics.uci.edu/dataset/53/iris>
+>
+> **Datos utilizados**: <https://github.com/fitorec/manual-R-markdown/tree/main/data>
 
 
 ## Importación de datos CSV
@@ -13,7 +15,12 @@ R incluye funciones nativas para leer archivos CSV. El siguiente código carga e
 
 ```{r, echo=TRUE}
 # Importar archivo CSV con read.csv
-iris_csv <- read.csv("data/iris.data.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+iris_csv <- read.csv(
+     "data/iris.data.csv", # Archivo fuente a leer
+     header = TRUE,        # La primer linea contiene los nombres
+     sep = ",",            # Carácter separador de valores
+     stringsAsFactors = FALSE
+)
 # Mostrar las primeras filas
 head(iris_csv)
 ```
@@ -23,6 +30,7 @@ head(iris_csv)
 Para leer archivos Excel, se recomienda usar el paquete `readxl`. Primero hay que instalarlo si no está instalado, y luego cargar el archivo:
 
 ```{r, echo=TRUE}
+
 # Instalar y cargar readxl (si es necesario)
 if (!requireNamespace("readxl", quietly = TRUE)) {
   install.packages("readxl")

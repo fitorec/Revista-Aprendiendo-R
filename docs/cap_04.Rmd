@@ -1,0 +1,175 @@
+# R Markdown y LaTeX
+
+R Markdown soporta de forma nativa la escritura de fórmulas matemáticas mediante LaTeX, permitiendo la inclusión de expresiones en línea o en bloques que se renderizan profesionalmente en los documentos generados. Esto facilita la creación de contenidos técnicos y científicos con notación matemática precisa.
+
+## Sintaxis básica de fórmulas LaTeX en R Markdown
+
+Las fórmulas se escriben encerrándolas entre signos de dólar:
+
+- Fórmulas en línea: `$ ... $`
+- Fórmulas en bloque (centradas): `$$ ... $$`
+
+### Tabla sintaxis de LaTeX para fórmulas comunes
+
+| Fórmula                 | Código LaTeX                                      | Ejemplo renderizado                               |
+|-------------------------|--------------------------------------------------|--------------------------------------------------|
+| Fracción                | `$\frac{a}{b}$`                                  | \(\frac{a}{b}\)                                   |
+| Exponente               | `$x^n$`                                          | \(x^n\)                                          |
+| Subíndice               | `$x_n$`                                          | \(x_n\)                                          |
+| Integral                | `$$\int_a^b f(x) dx$$`                           | \(\displaystyle \int_a^b f(x) dx \)              |
+| Derivada                | `$\frac{d}{dx} f(x)$`                            | \(\frac{d}{dx} f(x)\)                            |
+| Suma                    | `$$\sum_{i=1}^n x_i$$`                           | \(\displaystyle \sum_{i=1}^n x_i\)                |
+| Raíz cuadrada           | `$ \sqrt{x} $`                                   | \(\sqrt{x}\)                                     |
+| Matriz (pmatrix)        | `$$\begin{pmatrix} a & b \\ c & d \end{pmatrix}$$` | \(\begin{pmatrix} a & b \\ c & d \end{pmatrix}\) |
+| Vector columna          | `$$\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$$` | \(\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}\) |
+
+
+\twocolumn
+
+## Fórmulario de Ciencia de Datos
+
+### Teorema de Bayes
+```latex
+$$
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+$$
+```
+
+$$
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+$$
+
+### Perceptrón (función de activación)
+
+```latex
+$$
+y = 
+\begin{cases}
+1 & \text{si } \mathbf{w}
+ \cdot \mathbf{x} + b > 0 \\
+0 & \text{en otro caso}
+\end{cases}
+$$
+```
+
+$$
+y = 
+\begin{cases}
+1 & \text{si } \mathbf{w}
+ \cdot \mathbf{x} + b > 0 \\
+0 & \text{en otro caso}
+\end{cases}
+$$
+
+### Regresión Lineal
+
+```latex
+$$
+y = \beta_0
+ + \beta_1 x_1
+ + \beta_2 x_2
+ + \dots
+ + \beta_p x_p
+ + \epsilon
+$$
+```
+
+$$
+y = \beta_0
+ + \beta_1 x_1
+ + \beta_2 x_2
+ + \dots
+ + \beta_p x_p
+ + \epsilon
+$$
+
+### Regresión Logística (modelo)
+
+```latex
+$$
+P(y=1|\mathbf{x}) = \frac{1}
+ {
+   1 +
+   e^{-(
+     \beta_0 +
+     \beta_1 x_1 +
+     \dots +
+     \beta_p x_p
+   )}
+ }
+$$
+```
+
+$$
+P(y=1|\mathbf{x}) = \frac{1}
+ {
+   1 +
+   e^{-(
+     \beta_0 +
+     \beta_1 x_1 +
+     \dots +
+     \beta_p x_p
+   )}
+ }
+$$
+
+### Backpropagation (actualización de pesos)
+
+```latex
+$$
+w_{ij} \leftarrow w_{ij} - \eta
+ \frac{\partial E}{\partial w_{ij}}
+$$
+```
+
+$$
+w_{ij} \leftarrow w_{ij} - \eta
+ \frac{\partial E}{\partial w_{ij}}
+$$
+
+### Gradiente descendiente
+
+```latex
+$$
+\theta := \theta -
+ \alpha \nabla_\theta J(\theta)
+$$
+```
+
+$$
+\theta := \theta -
+ \alpha \nabla_\theta J(\theta)
+$$
+
+### Red Neuronal (función de activación sigmoide)
+
+```latex
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+```
+
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+### K Vecinos Más Cercanos (distancia euclidiana)
+
+```latex
+$$
+d(\mathbf{x}, \mathbf{y}) =
+ \sqrt{\sum_{i=1}^n (x_i - y_i)^2}
+$$
+```
+
+$$
+d(\mathbf{x}, \mathbf{y}) =
+ \sqrt{\sum_{i=1}^n (x_i - y_i)^2}
+$$
+
+---
+
+Estas fórmulas representan las bases matemáticas que sustentan muchas técnicas en Ciencia de Datos y aprendizaje automático. Integrar LaTeX en R Markdown permite documentar de forma clara y profesional estos conceptos.
+
+\onecolumn
+
