@@ -1,4 +1,4 @@
-name: Build and Release Reporte PDF
+name: Build and Release Revista en PDF
 
 on:
   push:

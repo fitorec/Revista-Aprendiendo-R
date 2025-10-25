@@ -1,4 +1,4 @@
-name: Generar reporte PDF
+name: Generar Revista en PDF
 
 on:
   push:
