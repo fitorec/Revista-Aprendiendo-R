@@ -49,7 +49,7 @@ df <- data.frame(
   esEstudiante = c(TRUE, FALSE, TRUE)
 )
 
-# Mostrar objetos
+# Mostrar datos
 edad
 nombre
 esEstudiante
@@ -70,9 +70,8 @@ numeros
 numeros <- 10
 numeros
 
-# Acceder a la edad de la segunda
-# persona en el dataframe
-df$edad
+# Acceder a la edad de Luis (2da)
+df$edad[2]
 
 # Añadir una nueva fila al dataframe
 df <- rbind(
@@ -83,7 +82,8 @@ df <- rbind(
     esEstudiante = FALSE
   )
 )
-df
+# Mostrando toda la 4ta fila (la de Carlos):
+df[4, ]
 ```
 
 ## Funciones en R

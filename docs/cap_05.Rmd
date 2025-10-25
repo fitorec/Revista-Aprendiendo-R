@@ -15,35 +15,38 @@ A continuación, se coloca el nombre abreviado de la distribución. Por ejemplo,
 
 - `dnorm()`, `pnorm()`, `qnorm()`, `rnorm()`
 
-## Distribuciones comunes en R
 
-| Tipo       | Nombre en R | Descripción breve                                       |
-|------------|-------------|---------------------------------------------------------|
-| Continua   | `norm`      | Normal (gaussiana).                                     |
-| Continua   | `exp`       | Exponencial.                                            |
-| Continua   | `unif`      | Uniforme continua.                                      |
-| Continua   | `gamma`     | Distribución Gamma.                                     |
-| Continua   | `weibull`   | Weibull.                                                |
-| Continua   | `beta`      | Beta.                                                   |
-| Continua   | `chisq`     | Chi-cuadrado.                                           |
-| Continua   | `t`         | t de Student.                                           |
-| Continua   | `f`         | F de Fisher.                                            |
-| Continua   | `lnorm`     | Log-normal.                                             |
-| Continua   | `cauchy`    | Cauchy.                                                 |
-| Continua   | `wilcox`    | Wilcoxon.                                               |
-| Discreta   | `binom`     | Binomial.                                               |
-| Discreta   | `pois`      | Poisson.                                                |
-| Discreta   | `geom`      | Geométrica.                                             |
-| Discreta   | `nbinom`    | Binomial negativa.                                      |
-| Discreta   | `hyper`     | Hipergeométrica.                                        |
+## Distribuciones Continuas en R
 
-A continuación vamos a ver alguna de ellas para esto vamos a usar el conjunto de funciones con prefijo `d` para obtener su densidad y graficar la curva de estas distribuciones.
+* `norm`: Normal (gaussiana).
+* `exp`: Exponencial.
+* `unif`: Uniforme continua.
+* `gamma`: Distribución Gamma.
+* `weibull`: Weibull.
+* `beta`: Beta.
+* `chisq`: Chi-cuadrado.
+* `t`: t de Student.
+* `f`: F de Fisher.
+* `lnorm`: Log-normal.
+* `cauchy`: Cauchy.
+* `wilcox`: Wilcoxon.
 
 ---
 
-\twocolumn
+## Distribuciones Discretas en R
 
-## Distribuciones Continuas
+* `binom`: Binomial.
+* `pois`: Poisson.
+* `geom`: Geométrica.
+* `nbinom`: Binomial negativa.
+* `hyper`: Hipergeométrica.
+
+---
+
+## Ejemplos:
+
+A continuación vamos a ver alguna de ellas para esto vamos a usar el conjunto de funciones con prefijo `d` para obtener su densidad y graficar la curva de estas distribuciones.
+
 
 ### Distribución Normal
 
@@ -178,4 +181,4 @@ barplot(
 )
 ```
 
-\onecolumn
+---

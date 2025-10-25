@@ -24,7 +24,7 @@ Se crean usando el símbolo de almohadilla `#`, uno por cada nivel:
 
 #### Citas y bloques de texto
 
-Para citas se usa `>`:
+Para citas se usa el simbolo `>` como se muestra a continuación:
 
 ```markdown
 > Esto es una cita.
@@ -32,14 +32,14 @@ Para citas se usa `>`:
 
 #### Listas
 
-- No ordenadas se crean con `-`, `*` o `+`:
+Las **No Ordenadas** se crean con `-`, `*` o `+`:
 
 ```markdown
 - Elemento 1
 - Elemento 2
 ```
 
-- Ordenadas con números y punto:
+Las **Ordenadas** con números y punto:
 
 ```markdown
 1. Primer elemento

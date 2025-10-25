@@ -28,6 +28,8 @@ Las fórmulas se escriben encerrándolas entre signos de dólar:
 
 ## Fórmulario de Ciencia de Datos
 
+A continuación se presentan en formato **LaTeX** las fórmulas matemáticas que sustentan muchas técnicas en **Ciencia de Datos** y aprendizaje automático.
+
 ### Teorema de Bayes
 ```latex
 $$
@@ -45,9 +47,8 @@ $$
 $$
 y = 
 \begin{cases}
-1 & \text{si } \mathbf{w}
- \cdot \mathbf{x} + b > 0 \\
-0 & \text{en otro caso}
+   1 & \text{si } w \cdot x + b > 0 \\
+   0 & \text{en otro caso}
 \end{cases}
 $$
 ```
@@ -55,8 +56,7 @@ $$
 $$
 y = 
 \begin{cases}
-1 & \text{si } \mathbf{w}
- \cdot \mathbf{x} + b > 0 \\
+1 & \text{si } w \cdot x + b > 0 \\
 0 & \text{en otro caso}
 \end{cases}
 $$
@@ -65,22 +65,17 @@ $$
 
 ```latex
 $$
-y = \beta_0
- + \beta_1 x_1
- + \beta_2 x_2
- + \dots
- + \beta_p x_p
- + \epsilon
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+    + \dots
+    + \beta_p x_p + \epsilon
 $$
+
 ```
 
 $$
-y = \beta_0
- + \beta_1 x_1
- + \beta_2 x_2
- + \dots
- + \beta_p x_p
- + \epsilon
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+    + \dots
+    + \beta_p x_p + \epsilon
 $$
 
 ### Regresión Logística (modelo)
@@ -167,9 +162,4 @@ d(\mathbf{x}, \mathbf{y}) =
  \sqrt{\sum_{i=1}^n (x_i - y_i)^2}
 $$
 
----
-
-Estas fórmulas representan las bases matemáticas que sustentan muchas técnicas en Ciencia de Datos y aprendizaje automático. Integrar LaTeX en R Markdown permite documentar de forma clara y profesional estos conceptos.
-
-\onecolumn
 

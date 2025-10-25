@@ -5,10 +5,30 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{hyperref}
+% --- Pie de página personalizado ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
 
 % --- Definir colores personalizados ---
+\definecolor{grisPie}{RGB}{175,175,180} % tono marrón rojizo
 \definecolor{marronRojo}{RGB}{150,40,27} % tono marrón rojizo
 \definecolor{azulEnlace}{RGB}{218,100,84} % azul para enlaces
+
+
+% Limpia encabezado y pie actuales
+\fancyhf{}
+% Define el texto del pie de página centrado
+\fancyfoot[C]{\textcolor{grisPie}{\small Revista Aprendiendo R y Ciencia de Datos Vol.~01}}
+
+% (Opcional) número de página a la derecha
+\fancyfoot[R]{\thepage}
+
+% Ajusta altura del encabezado/pie si se corta
+\setlength{\headheight}{14pt}
+\setlength{\footskip}{20pt}
+
+
+
 
 % --- Configurar color de títulos ---
 \titleformat{\section}
@@ -22,6 +42,9 @@
 \titleformat{\subsubsection}
   {\color{marronRojo}\normalfont\normalsize\bfseries}
   {\thesubsubsection}{1em}{}
+
+% Cambiando el titulo de la tabla de contenidos
+\renewcommand{\contentsname}{Revista Aprendiendo R Vol. 01}
 
 % --- Configurar enlaces en color azul ---
 \hypersetup{

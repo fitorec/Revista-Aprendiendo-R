@@ -7,7 +7,7 @@ R ofrece varias herramientas para crear **gráficos compuestos**, entre las más
 
 ---
 
-## 1. El sistema Grid y el parámetro `mfrow`
+## Sistema Grid y el parámetro `mfrow`
 
 La función `par()` controla los parámetros gráficos globales.  
 El argumento `mfrow` permite dividir la ventana gráfica en una matriz de filas y columnas para mostrar múltiples gráficos.
@@ -21,7 +21,9 @@ El parámetro `mfrow=c(3,1)` divide el área de dibujo en **3 filas y 1 columna*
 
 ---
 
-## 2. Ejemplo: Tres gráficos en una columna
+## Ejemplo
+
+### Grid con tres gráficos en una columna
 
 A continuación, generaremos tres gráficos basados en la **distribución normal**:
 
@@ -54,13 +56,15 @@ par(mfrow=c(1,1))
 
 ---
 
-## 3. Múltiples visualizaciones con `grid` y `layout`
+## Sistema Layout
 
 Cuando se requiere un control más preciso de las posiciones y tamaños de los gráficos, se usa **`layout()`**, que permite definir un diseño mediante una **matriz numérica**.
 
 ---
 
-## 4. Ejemplo con dos filas (Histogramas + Boxplot combinado)
+## Ejemplo
+
+### Layout con dos filas (Histogramas + Boxplot combinado)
 
 Aquí crearemos un gráfico compuesto de dos filas:
 
@@ -101,7 +105,7 @@ legend("bottomright", legend=c("Media Sepal","Media Petal"), col=c("blue","green
 
 ---
 
-## 5. Uso de `layout()` con una matriz compleja de 4 elementos
+## Uso de `layout()` con una matriz compleja de 4 elementos
 
 En este último ejemplo, crearemos una **composición de 2 filas × 2 columnas** que contenga:
 
@@ -143,7 +147,7 @@ abline(lm(iris_csv$petal.width ~ iris_csv$sepal.width), col="red", lwd=2)
 layout(1)
 ```
 
-### Explicación de parámetros principales
+### Parámetros principales
 
 * `layout(matrix(1:4, nrow=2, byrow=TRUE))`:
   Define una cuadrícula de **2 filas y 2 columnas** donde se colocan los gráficos en orden.
@@ -157,7 +161,7 @@ layout(1)
 * `legend()`:
   Añade leyendas para identificar elementos visuales.
 
----
+> El uso de `par(mfrow)` y `layout()` es esencial cuando se desea comunicar múltiples aspectos de un conjunto de datos en una sola figura, especialmente en análisis exploratorios y reportes científicos.
 
-> *El uso de `par(mfrow)` y `layout()` es esencial cuando se desea comunicar múltiples aspectos de un conjunto de datos en una sola figura, especialmente en análisis exploratorios y reportes científicos.*
+---
 
