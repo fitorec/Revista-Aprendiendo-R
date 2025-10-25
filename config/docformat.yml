@@ -1,0 +1,35 @@
+title: "Manual de R Markdown"
+author:
+  - name: "Miguel Ángel Martínez"
+    affiliation: "Laboratorio de Ciencia de Datos"
+    email: "fitorec@mundosica.com"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+language: es
+keywords: ["R Markdown", "Ciencia de Datos", "Visualización", "Gráficos en R", "Documentación reproducible"]
+abstract: |
+  Este manual busca enseñar el uso de R Markdown para generar documentos científicos y técnicos reproducibles,
+  combinando texto, código y resultados en un solo flujo de trabajo. Se presentan ejemplos prácticos y buenas prácticas.
+license: "CC BY-SA 4.0"
+fontsize: 11pt
+documentclass: article
+classoption: oneside
+geometry: 
+  - top=1cm
+  - bottom=2cm
+  - left=1cm
+  - right=1cm
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    highlight: breezedark
+    latex_engine: xelatex
+    includes:
+      in_header:
+        - latex/portada_preamble.tex
+        - latex/header.tex
+      before_body:
+        - latex/portada.tex
+        - latex/licencia.tex
+    pandoc_args: ["--metadata=title=", "--metadata=author=", "--metadata=date=", "--metadata=abstract="]

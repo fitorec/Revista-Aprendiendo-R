@@ -48,7 +48,9 @@ manual-R-markdown/
 ├── docs/                  # Capítulos en formato .Rmd
 ├── latex/                 # Plantillas y componentes LaTeX
 ├── img/                   # Recursos visuales
-├── metadata.yaml          # Metadatos del reporte
+├── config/                # Configuraciones
+|   ├── docformat.yml      # Configuración del formato del documento
+|   └── metadata.yml       # Configuración de Metadatos del documento.
 ├── GNUmakefile            # Comandos de construcción automatizados
 ├── LICENSE                # Licencia Creative Commons BY-SA
 ├── CONTRIBUTING.md        # Guía para contribuir

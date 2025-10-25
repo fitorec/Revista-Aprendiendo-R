@@ -46,6 +46,7 @@ vignettes/*.pdf
 po/*~
 # todo archivo de dato temporal
 data/*~
+data/*export*
 
 # RStudio Connect folder
 rsconnect/

@@ -4,7 +4,7 @@ library(rmarkdown)
 library(yaml)
 
 # 1. Cargar metadatos del reporte
-meta <- yaml::read_yaml("metadata.yaml")
+meta <- yaml::read_yaml("config/metadata.yml")
 
 # 2. Listar los capítulos
 archivos <- sort(list.files("docs", pattern = "^.*\\.Rmd$", full.names = TRUE))
@@ -15,26 +15,21 @@ if (length(archivos) == 0) {
 # 3. Archivo temporal que unifica todo
 tmp_file <- "reporte_tmp.Rmd"
 
-# 4. Cabecera YAML del documento principal (sin título/autor)
-yaml_header <- "---
-output:
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
-    highlight: breezedark
-    latex_engine: xelatex
-    includes:
-      in_header: latex/portada_preamble.tex
-      before_body:
-        - latex/portada.tex
-        - latex/licencia.tex
-geometry: margin=1in
-"
+# 4. Cargar formato del documento desde config/docformat.yml
+yaml_path <- "config/docformat.yml"
 
+if (!file.exists(yaml_path)) {
+  stop("❌ No se encontró el archivo de configuración: ", yaml_path)
+}
 
-# 5. Crear archivo temporal
-cat(yaml_header, file = tmp_file)
+# Leer el contenido del YAML como texto (no parseado)
+yaml_text <- readLines(yaml_path, warn = FALSE)
+
+# Agregar delimitadores YAML al inicio y final
+yaml_header <- c("---", yaml_text )
+
+# 5. Crear archivo temporal con el encabezado YAML
+cat(yaml_header, sep = "\n", file = tmp_file)
 
 # Unir autores en una sola cadena para pasarlos como variable LaTeX
 autores <- paste(meta$autoresPDF, collapse = ", ")
@@ -49,13 +44,13 @@ latex_vars <- sprintf("header-includes:
   - \\newcommand{\\fechaPDF}{%s}
   - \\newcommand{\\repositorioPDF}{%s}
 ---\n\n",
-meta$tituloPDF,
-autores,
-meta$materiaPDF,
-meta$profesorPDF,
-meta$asuntoPDF,
-meta$fechaPDF,
-meta$repositorioPDF
+  meta$tituloPDF,
+  autores,
+  meta$materiaPDF,
+  meta$profesorPDF,
+  meta$asuntoPDF,
+  meta$fechaPDF,
+  meta$repositorioPDF
 )
 
 cat(latex_vars, file = tmp_file, append = TRUE)
@@ -69,8 +64,6 @@ cat("\n\n", file = tmp_file, append = TRUE)
 }
 
 # 8. Renderizar el reporte final
-
-cat("📘 Generando reporte...\n\n")
 render(tmp_file, output_file = "magazine.pdf")
 
 #  9. Limpiar archivo temporal

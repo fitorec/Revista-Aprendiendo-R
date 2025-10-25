@@ -1,0 +1,39 @@
+% ============================
+% Configuración de colores y enlaces
+% ============================
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% --- Definir colores personalizados ---
+\definecolor{marronRojo}{RGB}{150,40,27} % tono marrón rojizo
+\definecolor{azulEnlace}{RGB}{218,100,84} % azul para enlaces
+
+% --- Configurar color de títulos ---
+\titleformat{\section}
+  {\color{marronRojo}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\color{marronRojo}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\color{marronRojo}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% --- Configurar enlaces en color azul ---
+\hypersetup{
+  colorlinks=true,
+  linkcolor=azulEnlace,
+  urlcolor=azulEnlace,
+  citecolor=azulEnlace,
+  % Metadatos
+  pdfauthor={Miguel Ángel Figueroa},
+  pdftitle={Manual de R Markdown},
+  pdfsubject={Documentación reproducible en ciencia de datos},
+  pdfkeywords={R Markdown, Ciencia de Datos, Visualización, Estadística, Reproducibilidad},
+  pdfcreator={R Markdown + Pandoc},
+  pdfproducer={XeLaTeX}
+}

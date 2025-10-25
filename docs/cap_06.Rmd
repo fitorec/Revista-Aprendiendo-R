@@ -1,7 +1,94 @@
 \twocolumn
-# Gráficos con R - Parte I
+
+# Gráficos con R
 
 En capítulos anteriores, vimos las funciones `curve()` y `barplot()` para graficar funciones matemáticas y frecuencias respectivamente. Estas son funciones base de R para la visualización, sobre las cuales se fundamenta el manejo gráfico en R.
+
+Los gráficos en **R** son una parte esencial para el análisis y la comunicación de datos.
+
+A través de ellos podemos visualizar patrones, distribuciones, correlaciones y comportamientos complejos que difícilmente se aprecian en tablas o valores numéricos.
+
+En este capítulo iniciamos la construcción de los conceptos fundamentales del sistema gráfico de **R**, su estructura, y las diferentes formas en que podemos generar visualizaciones.
+
+## Sistemas gráficos en R
+
+En **R** existen distintos **sistemas gráficos** que permiten generar visualizaciones de diversa complejidad y estilo.  
+Cada uno tiene su propio enfoque, ventajas y nivel de control sobre los elementos visuales.
+
+### 1. Sistema base (Base Graphics)
+
+Es el sistema **nativo de R**, incluido desde sus primeras versiones.  
+Se basa en funciones como `plot()`, `hist()`, `boxplot()` y `lines()` que dibujan directamente sobre una ventana gráfica o "device".
+
+- Ideal para gráficos rápidos y exploratorios.  
+- Permite añadir elementos gráficos adicionales (títulos, líneas, texto, etc.) de forma manual.  
+- Se controla principalmente a través de **funciones y parámetros**.
+
+Ejemplo clásico:
+
+```{r, echo=TRUE}
+plot(
+  iris$Sepal.Length, iris$Sepal.Width,
+  main = "Rel largo/ancho Sépalo",
+  xlab = "Largo del Sépalo",
+  ylab = "Ancho del Sépalo",
+  col = "blue", pch = 19
+)
+```
+---
+
+### 2. Sistema Lattice
+
+El sistema **Lattice** (paquete `lattice`) introdujo un enfoque **declarativo**:
+en lugar de construir un gráfico paso a paso, se describe **qué** se desea graficar y R decide **cómo** hacerlo.
+
+*  Facilita la creación de **gráficos multivariados** y **paneles condicionados** (por grupos o factores).
+*  Produce gráficos de alta calidad con **menos código**.
+*  Sin embargo, **no es tan flexible** para añadir elementos después de creado el gráfico.
+
+Ejemplo:
+
+```{r, echo=TRUE}
+library(lattice)
+xyplot(
+  Sepal.Length ~ Sepal.Width | Species,
+  data = iris
+)
+```
+
+---
+
+### 3. Sistema ggplot2
+
+El sistema **ggplot2** (paquete del mismo nombre) está basado en la **Gramática de los Gráficos** (*The Grammar of Graphics*).
+Su enfoque es **modular**: cada gráfico se construye agregando capas (`+`) que representan datos, estéticas, geometrías, escalas y temas.
+
+* 🔸 Extremadamente **flexible y potente**.
+* 🔸 Permite generar gráficos profesionales, reproducibles y altamente personalizables.
+* 🔸 Ideal para análisis estadístico y comunicación científica.
+
+Ejemplo:
+
+```{r, echo=TRUE}
+library(ggplot2)
+
+ggplot(
+  iris,
+  aes(
+    x = Sepal.Length, y = Sepal.Width,
+    color = Species
+  )
+) +
+geom_point(size = 3) +
+labs(title = "Rel sépalo largo/ancho") +
+theme_minimal()
+```
+
+---
+
+> **Nota**: *En este manual nos concentraremos principalmente en el sistema **base** de **R**, ya que es la base conceptual sobre la cual se construyen los demás sistemas y es el más adecuado para aprender los fundamentos de la generación de gráficos.*
+
+---
 
 ## Función `curve()`
 
@@ -19,7 +106,7 @@ Esta función permite graficar una función matemática continua en un rango esp
     ylab
   )
   ```
-- Útil para visualizar densidades, funciones de distribución y cualquier función matemática expresable en R.
+- Útil para visualizar densidades, funciones de distribución y cualquier función matemática "_expresable_" en **R**.
 
 ## Función `barplot()`
 
@@ -73,7 +160,9 @@ curve(
 )
 legend(
   "topright",
-  legend=c("Normal", "Exponencial", "Uniforme"),
+  legend= c(
+    "Normal", "Exponencial", "Uniforme"
+  ),
   col=c("blue", "#801100", "purple"),
   lwd=2
 )
@@ -91,23 +180,19 @@ x_pois <- 0:15
 x_binom <- 0:15
 x_geom <- 0:15
 
-# Probabilidades
-pois_vals <- dpois(
- x_pois, lambda=5
-)
-binom_vals <- dbinom(
- x_binom, size=15, prob=0.4
-)
-geom_vals <- dgeom(
- x_geom, prob=0.3
-)
+# Poison
+pois_vals <- dpois(x_pois, lambda=5)
+# Binomials
+binom_vals <- dbinom(x_binom, size=15, prob=0.4)
+# Geometrica
+geom_vals <- dgeom( x_geom, prob=0.3)
 
 # Para barras juntas, creamos matriz
 vals_matrix <- rbind(
   pois_vals, binom_vals, geom_vals
 )
 
-# Ajustamos espacio para barras lado a lado
+# Ajustamos espacio para las barras
 barplot(
   vals_matrix,
   beside=TRUE,
@@ -120,8 +205,118 @@ barplot(
 
 legend(
   "topright",
-  legend=c("Poisson", "Binomial", "Geométrica"),
+  legend=c(
+    "Poisson", "Binomial", "Geométrica"
+  ),
   fill=c("red", "orange", "blue")
 )
 ```
+
+
+## Tipos de funciones gráficas
+
+Dentro del sistema gráfico base, las funciones pueden clasificarse en dos grandes categorías:
+**funciones de alto nivel** y **funciones de bajo nivel**.
+
+### Funciones de alto nivel
+
+Estas funciones **crean un nuevo gráfico desde cero** y abren (o reutilizan) un dispositivo gráfico.
+
+> **Ejemplos**: `plot()`, `hist()`, `boxplot()`, `barplot()`, `pie()`.
+
+Características:
+
+* Inician una nueva figura.
+* Borran el contenido previo del dispositivo.
+* Permiten establecer ejes, títulos, y etiquetas principales.
+
+```r
+hist(
+  iris$Sepal.Length,
+  main = "Histograma largo sépalo"
+)
+```
+
+---
+
+### Funciones de bajo nivel
+
+Estas funciones **añaden elementos a una gráfica existente** sin borrar lo anterior.
+
+> **Ejemplos**: `points()`, `lines()`, `text()`, `abline()`, `legend()`.
+
+Características:
+
+* Modifican un gráfico ya generado.
+* Se usan para **superponer información adicional** (tendencias, etiquetas, marcas, etc.).
+
+Ejemplo combinando ambas:
+
+```r
+plot(
+  iris$Sepal.Length,
+  iris$Sepal.Width,
+  main = "Sepalos", pch = 19
+)
+abline(
+  lm(
+    Sepal.Width ~ Sepal.Length, data = iris
+  ),
+  col = "red", lwd = 2
+)
+```
+
+Este tipo de funciones las veremos mas adelante cuando realicemos gráficas mas complejas con múltiples elementos.
+
+---
+
+
+
+## Dispositivos gráficos (*devices*)
+
+En R, un **dispositivo gráfico** es el medio donde se dibuja el gráfico.
+Puede ser una **ventana interactiva**, un **archivo** (PDF, PNG, JPEG, SVG), o incluso una **pantalla virtual** para renderizar figuras en segundo plano.
+
+
+### Tipos de dispositivos gráficos en R
+
+* **Ventana del S.O**: Útil para trabajar de forma interactiva
+  - **Linux / Unix - Ventana X11***
+    - **Función:** `x11()`: Ventana gráfica interactiva estándar utilizada en sistemas basados en X11.
+
+  - **Windows - Ventana Windows**
+    - **Función:** `windows()` : Abre una ventana gráfica nativa en el entorno Windows.
+
+  - **MacOS - Ventana Quartz**
+    - **Función:** `quartz()`: Dispositivo gráfico nativo de macOS.
+
+* **PDF (Archivo vectorial)**
+  * **Función** `pdf("archivo.pdf")`: Genera gráficos en formato vectorial de alta resolución, ideales para impresión o publicación científica.
+
+* **PNG / JPEG (Mapas de bits)**
+  * **Funciones** `png()`, `jpeg()`: Crean imágenes rasterizadas, apropiadas para presentaciones, sitios web o informes digitales.
+
+### Ejemplo:
+
+Cuando llamamos a una función de alto nivel, R abre un dispositivo por defecto dependiendo del entorno donde estemos trabajando.
+
+```r
+# Guardar un gráfico como archivo PNG
+png(
+  "img/grafico_iris.png",
+  width = 800, height = 600
+)
+# No imprime la imagen pero la va a guardar
+plot(
+  iris$Petal.Length,
+  iris$Petal.Width,
+  main = "Rel largo/ancho del pétalo",
+  col = iris$Species, pch = 19
+)
+# Cerrando el dispositivo y guardando cambios.
+dev.off()
+```
+
+> `dev.off()` **cierra el dispositivo** y guarda la imagen generada.
+
 \onecolumn
