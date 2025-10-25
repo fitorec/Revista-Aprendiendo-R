@@ -5,7 +5,7 @@ Estas técnicas complementan el análisis exploratorio, permitiendo observar rel
 
 ---
 
-## 1. Polígonos de Frecuencia
+## Polígonos de Frecuencia
 
 ### Concepto
 

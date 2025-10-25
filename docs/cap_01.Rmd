@@ -108,3 +108,61 @@ promedio <- function(x) {
 
 promedio(numeros)
 ```
+
+---
+
+## Pre-requisitos y librerías
+
+Antes de continuar con los siguientes capitulos es importante entender el papel de las **librerías** o **paquetes**.
+
+Las librerías en R son colecciones de funciones, datos y documentación que amplían las capacidades básicas del lenguaje. Permiten realizar tareas específicas sin tener que programarlas desde cero: desde manipular datos y crear gráficos hasta generar reportes automatizados o trabajar con modelos estadísticos complejos.
+
+Para poder ejecutar los ejemplos y reproducir los ejercicios de este manual, necesitarás instalar y cargar las siguientes librerías que se utilizarán en distintos capítulos:
+
+* **rmarkdown** → Permite generar documentos dinámicos que combinan código, resultados y texto.
+* **yaml** → Facilita la lectura y escritura de archivos de configuración en formato YAML.
+* **readxl** → Sirve para leer archivos de Excel (.xls, .xlsx).
+* **writexl** → Permite exportar data frames a archivos Excel (.xlsx).
+* **scatterplot3d** → Permite crear gráficos tridimensionales simples.
+* **ggplot2** → Proporciona un sistema avanzado y personalizable de gráficos.
+* **plotrix** → Contiene funciones adicionales para crear gráficos especializados (por ejemplo, gráficos 3D, anillos, entre otros).
+* **lattice** → Implementa un sistema gráfico alternativo basado en fórmulas, ideal para análisis multivariado.
+
+---
+
+### Instalación de librerías
+
+Si aún no tienes instaladas las librerías, puedes hacerlo directamente desde R ejecutando el siguiente comando:
+
+```R
+# Instalar todas las librerías necesarias
+install.packages(c(
+  "rmarkdown",
+  "yaml",
+  "readxl",
+  "writexl",
+  "scatterplot3d",
+  "ggplot2",
+  "plotrix",
+  "lattice"
+))
+```
+
+Una vez instaladas, para utilizarlas en tus scripts o documentos, debes **cargarlas** con la función `library()`:
+
+```R
+# Cargar las librerías necesarias
+library(rmarkdown)
+library(yaml)
+library(readxl)
+library(writexl)
+library(scatterplot3d)
+library(ggplot2)
+library(plotrix)
+library(lattice)
+```
+
+---
+
+Estas librerías te permitirán seguir sin problemas los ejemplos de visualización, manipulación de datos y generación de reportes reproducibles a lo largo del manual.
+

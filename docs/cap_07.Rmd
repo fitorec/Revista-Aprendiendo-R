@@ -11,7 +11,7 @@ Estas herramientas permiten visualizar la **distribución**, **variabilidad** y 
 
 ---
 
-## 1. Histogramas
+## Histogramas
 
 ### Concepto
 
@@ -61,7 +61,7 @@ par(mfrow=c(1,1))
 
 ---
 
-## 2. Diagramas de Caja (Boxplots)
+## Diagramas de Caja (Boxplots)
 
 ### Concepto
 
@@ -86,7 +86,7 @@ boxplot(
 
 ---
 
-## 3. Diagramas de Tallos y Hojas
+## Diagramas de Tallos y Hojas
 
 ### Concepto
 
@@ -102,7 +102,7 @@ stem(iris_csv$petal.length, scale = 1)
 
 ---
 
-## 4. Gráfico de Pastel
+## Gráfico de Pastel
 
 ### Concepto
 
@@ -128,7 +128,7 @@ pie(
 
 ---
 
-## 5. Combinación de Gráficos: Pie 3D y Barras
+## Combinación de Gráficos: Pie 3D y Barras
 
 ### Concepto
 

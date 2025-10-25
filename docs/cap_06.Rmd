@@ -17,7 +17,7 @@ En este capítulo iniciamos la construcción de los conceptos fundamentales del 
 En **R** existen distintos **sistemas gráficos** que permiten generar visualizaciones de diversa complejidad y estilo.  
 Cada uno tiene su propio enfoque, ventajas y nivel de control sobre los elementos visuales.
 
-### 1. Sistema base (Base Graphics)
+### Sistema base (Base Graphics)
 
 Es el sistema **nativo de R**, incluido desde sus primeras versiones.  
 Se basa en funciones como `plot()`, `hist()`, `boxplot()` y `lines()` que dibujan directamente sobre una ventana gráfica o "device".
@@ -39,7 +39,7 @@ plot(
 ```
 ---
 
-### 2. Sistema Lattice
+### Sistema Lattice
 
 El sistema **Lattice** (paquete `lattice`) introdujo un enfoque **declarativo**:
 en lugar de construir un gráfico paso a paso, se describe **qué** se desea graficar y R decide **cómo** hacerlo.
@@ -60,7 +60,7 @@ xyplot(
 
 ---
 
-### 3. Sistema ggplot2
+### Sistema ggplot2
 
 El sistema **ggplot2** (paquete del mismo nombre) está basado en la **Gramática de los Gráficos** (*The Grammar of Graphics*).
 Su enfoque es **modular**: cada gráfico se construye agregando capas (`+`) que representan datos, estéticas, geometrías, escalas y temas.
