@@ -1,13 +1,8 @@
 # Manual de R Markdown
 
 ```
-dRRRRb.        .RRb  dRR.  .dRb.  dRRRRb. db   dD dRRRRb.  .dRRb.  db   dRb   db dRb   db 
-RR  `RD        RR'YbdP`RR dR' `Rb RR  `RD RR ,RP' RR  `RD .RP  YR. RR   IRI   RR RRRo  RR 
-RRoobY'        RR  RR  RR RRoooRR RRoobY' RR,RP   RR   RR RR    RR RR   IRI   RR RRVRo RR 
-RR`Rb   CRRRRD RR  RR  RR RR~~~RR RR`Rb   RR`Rb   RR   RR RR    RR YR   IRI   RR RR VRoRR 
-RR `RR.        RR  RR  RR RR   RR RR `RR. RR `RR. RR  .RD `Rb  dR' `Rb dR'Rb dR' RR  VRRR 
-RR   YD        YP  YP  YP YP   YP RR   YD YP   YD YRRRRD'  `YRRP'   `RbR' `RdR'  VP   VRP 
-                                                                                          
+ ____    _  _ ____ ____ _  _ ___  ____ _  _ __ _
+ |--< -- |\/| |--| |--< |-:_ |__> [__] |/\| | \|
 ```
 
 > **Autor:** Ing. Miguel Ángel Marcial Martínez (@Fitorec)  
