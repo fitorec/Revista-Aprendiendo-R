@@ -64,7 +64,7 @@ cat("\n\n", file = tmp_file, append = TRUE)
 }
 
 # 8. Renderizar el reporte final
-render(tmp_file, output_file = "magazine.pdf")
+render(tmp_file, output_file = "Revista-Aprendiendo-R.pdf")
 
 #  9. Limpiar archivo temporal
 unlink(tmp_file)

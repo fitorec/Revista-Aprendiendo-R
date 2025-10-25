@@ -38,5 +38,5 @@ jobs:
       - name: 📦 Subir artefacto PDF
         uses: actions/upload-artifact@v4
         with:
-          name: magazine-pdf
-          path: magazine.pdf
+          name: Revista-Aprendiendo-R
+          path: Revista-Aprendiendo-R.pdf

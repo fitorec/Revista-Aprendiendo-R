@@ -21,7 +21,7 @@ help:
 clean:
 	@echo "🧹 Limpiando archivos temporales..."
 	rm -f data/*export*
-	rm -f magazine.pdf reporte_tmp.Rmd reporte_tmp.knit.md reporte.tex
+	rm -f Revista-Aprendiendo-R.pdf reporte_tmp.Rmd reporte_tmp.knit.md reporte.tex
 
 
 # Construir el PDF (siempre limpia antes)

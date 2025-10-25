@@ -1,11 +1,21 @@
-# 📘 Manual de R Markdown
+# Manual de R Markdown
+
+```
+dRRRRb.        .RRb  dRR.  .dRb.  dRRRRb. db   dD dRRRRb.  .dRRb.  db   dRb   db dRb   db 
+RR  `RD        RR'YbdP`RR dR' `Rb RR  `RD RR ,RP' RR  `RD .RP  YR. RR   IRI   RR RRRo  RR 
+RRoobY'        RR  RR  RR RRoooRR RRoobY' RR,RP   RR   RR RR    RR RR   IRI   RR RRVRo RR 
+RR`Rb   CRRRRD RR  RR  RR RR~~~RR RR`Rb   RR`Rb   RR   RR RR    RR YR   IRI   RR RR VRoRR 
+RR `RR.        RR  RR  RR RR   RR RR `RR. RR `RR. RR  .RD `Rb  dR' `Rb dR'Rb dR' RR  VRRR 
+RR   YD        YP  YP  YP YP   YP RR   YD YP   YD YRRRRD'  `YRRP'   `RbR' `RdR'  VP   VRP 
+                                                                                          
+```
 
 > **Autor:** Ing. Miguel Ángel Marcial Martínez (@Fitorec)  
 > **Repositorio:** [fitorec/manual-R-markdown](https://github.com/fitorec/manual-R-markdown)
 
 ---
 
-## 🧩 Descripción General
+## Descripción General
 
 **Manual de R Markdown** es un proyecto educativo y práctico que busca documentar, paso a paso, el proceso de **creación de reportes técnicos, artículos y material científico utilizando R Markdown**.  
 
@@ -15,7 +25,7 @@ El proyecto también sirve como **bitácora personal y colaborativa**, donde se 
 
 ---
 
-## 🎯 Objetivos del Proyecto
+## Objetivos del Proyecto
 
 - Aprender a **estructurar y compilar documentos** con R Markdown.
 - Explorar el **uso de LaTeX** y plantillas personalizadas para publicaciones académicas o revistas.
@@ -25,7 +35,7 @@ El proyecto también sirve como **bitácora personal y colaborativa**, donde se 
 
 ---
 
-## 🧠 Contenido del Manual
+## Contenido del Manual
 
 El manual se organiza por capítulos, cada uno centrado en un tema o herramienta clave:
 
@@ -39,7 +49,7 @@ El manual se organiza por capítulos, cada uno centrado en un tema o herramienta
 
 ---
 
-## ⚙️ Estructura del Repositorio
+## Estructura del Repositorio
 
 ```
 
@@ -49,8 +59,8 @@ manual-R-markdown/
 ├── latex/                 # Plantillas y componentes LaTeX
 ├── img/                   # Recursos visuales
 ├── config/                # Configuraciones
-|   ├── docformat.yml      # Configuración del formato del documento
-|   └── metadata.yml       # Configuración de Metadatos del documento.
+|   ├── docformat.yml        # Configuración del formato del documento
+|   └── metadata.yml         # Configuración de Metadatos del documento.
 ├── GNUmakefile            # Comandos de construcción automatizados
 ├── LICENSE                # Licencia Creative Commons BY-SA
 ├── CONTRIBUTING.md        # Guía para contribuir
@@ -60,7 +70,7 @@ manual-R-markdown/
 
 ---
 
-## 🧰 Construcción Local
+## Construcción Local
 
 Este proyecto utiliza **R Markdown** para generar documentos en formato **PDF** empleando **LaTeX** como motor de renderizado.
 
@@ -93,7 +103,7 @@ Estas librerías son necesarias para:
 
 ---
 
-### 🍎 macOS
+### MacOS
 
 En macOS, puedes instalar las dependencias mediante **Homebrew**:
 
@@ -112,7 +122,7 @@ which pdflatex
 
 ---
 
-### 🪟 Windows
+### Windows
 
 En Windows, se recomienda instalar:
 
@@ -134,7 +144,7 @@ En Windows, se recomienda instalar:
 
 ---
 
-### 📚 Dependencias en R
+### Dependencias en R
 
 Independientemente del sistema operativo, debes instalar los siguientes paquetes de **R**:
 
@@ -150,7 +160,7 @@ Estos paquetes son los encargados de:
 
 ---
 
-### ⚙️ Verificación
+### Verificación
 
 Una vez instaladas las dependencias, puedes probar la compilación local con:
 
@@ -158,11 +168,11 @@ Una vez instaladas las dependencias, puedes probar la compilación local con:
 make build
 ```
 
-Si todo está correctamente configurado, se generará el archivo **`magazine.pdf`** en el directorio raíz del proyecto.
+Si todo está correctamente configurado, se generará el archivo **`Revista-Aprendiendo-R.pdf`** en el directorio raíz del proyecto.
 
 ---
 
-## 🤝 Cómo Contribuir
+## Cómo Contribuir
 
 Cualquier persona puede contribuir revisando el contenido, agregando ejemplos o proponiendo mejoras.
 
@@ -170,7 +180,7 @@ Consulta la guía completa en [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-## 📜 Licencia
+## Licencia
 
 Este proyecto se distribuye bajo la licencia
 **Creative Commons Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)**.
@@ -178,7 +188,7 @@ Puedes usar, modificar y compartir el material siempre que cites la fuente y man
 
 ---
 
-## 🌐 Enlaces Relacionados
+## Enlaces Relacionados
 
 * Sitio del proyecto: *(próximamente)*
 * Repositorio oficial: [https://github.com/fitorec/manual-R-markdown](https://github.com/fitorec/manual-R-markdown)
@@ -186,4 +196,4 @@ Puedes usar, modificar y compartir el material siempre que cites la fuente y man
 
 ---
 
-> ✨ *“La reproducibilidad no solo es una buena práctica: es una forma de pensamiento científico.”*
+> *“La reproducibilidad no solo es una buena práctica: es una forma de pensamiento científico.”*
