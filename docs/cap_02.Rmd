@@ -76,6 +76,6 @@ Es una extensión de Markdown que permite integrar fragmentos ejecutables de có
 - Documentación oficial: [RMarkdown](https://rmarkdown.rstudio.com/)
 - Libro gratuito: *R Markdown: The Definitive Guide* por Yihui Xie et al.
 - Comunidades y foros especializados de R y RStudio
-- [Repositorio de este Manual R-Markdown](https://github.com/fitorec/manual-R-markdown)
+- [Repositorio de este Manual R-Markdown](https://github.com/fitorec/Revista-Aprendiendo-R)
 
 \onecolumn

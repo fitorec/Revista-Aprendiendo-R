@@ -6,7 +6,7 @@ El dataset que utilizaremos fue extraido de la [universidad de Irvine california
 
 > **Fuente original**: <http://archive.ics.uci.edu/dataset/53/iris>
 >
-> **Datos utilizados**: <https://github.com/fitorec/manual-R-markdown/tree/main/data>
+> **Datos utilizados**: <https://github.com/fitorec/Revista-Aprendiendo-R/tree/main/data>
 
 
 ## Importación de datos CSV

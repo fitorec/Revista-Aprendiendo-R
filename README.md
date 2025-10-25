@@ -1,22 +1,22 @@
-# Manual de R Markdown
+# Revista Aprendiendo R
 
 ```
  ____    _  _ ____ ____ _  _ ___  ____ _  _ __ _
  |--< -- |\/| |--| |--< |-:_ |__> [__] |/\| | \|
 ```
 
-> **Autor:** Ing. Miguel Ángel Marcial Martínez (@Fitorec)  
-> **Repositorio:** [fitorec/manual-R-markdown](https://github.com/fitorec/manual-R-markdown)
+> **Autor:** Ing. Miguel Ángel Marcial Martínez (@Fitorec)
+> **Repositorio:** [fitorec/Revista-Aprendiendo-R](https://github.com/fitorec/Revista-Aprendiendo-R)
 
 ---
 
 ## Descripción General
 
-**Manual de R Markdown** es un proyecto educativo y práctico que busca documentar, paso a paso, el proceso de **creación de reportes técnicos, artículos y material científico utilizando R Markdown**.  
+**Revista Aprendiendo R** es un proyecto educativo y práctico que busca documentar, paso a paso, el proceso de **creación de reportes técnicos, artículos y material científico utilizando R Markdown**.
 
-Este manual está orientado a quienes desean **aprender R Markdown desde un enfoque aplicado a la Ciencia de Datos**, integrando herramientas de análisis, visualización, y automatización de la generación de documentos reproducibles.
+Esta revista está orientada a quienes desean **aprender R Markdown desde un enfoque aplicado a la Ciencia de Datos**, integrando herramientas de análisis, visualización, y automatización de la generación de documentos reproducibles.
 
-El proyecto también sirve como **bitácora personal y colaborativa**, donde se registran experiencias, configuraciones, plantillas y scripts usados en la generación de reportes profesionales en formato PDF, HTML o Word.
+El proyecto también sirve como **bitácora personal y colaborativa**, donde se registran experiencias, configuraciones, plantillas y scripts usados en la generación de reportes profesionales en formato `PDF`, `HTML` o `Word`.
 
 ---
 
@@ -30,9 +30,9 @@ El proyecto también sirve como **bitácora personal y colaborativa**, donde se 
 
 ---
 
-## Contenido del Manual
+## Contenido de esta Revista
 
-El manual se organiza por capítulos, cada uno centrado en un tema o herramienta clave:
+La revista se organiza por capítulos, cada uno centrado en un tema o herramienta clave:
 
 | Sección | Descripción |
 |----------|--------------|
@@ -47,20 +47,19 @@ El manual se organiza por capítulos, cada uno centrado en un tema o herramienta
 ## Estructura del Repositorio
 
 ```
-
-manual-R-markdown/
+Revista-Aprendiendo-R/
 ├── build_magazine.R       # Script principal para compilar el documento
-├── docs/                  # Capítulos en formato .Rmd
-├── latex/                 # Plantillas y componentes LaTeX
-├── img/                   # Recursos visuales
+├── data/                  # Archivos de datos a utilizar
 ├── config/                # Configuraciones
 |   ├── docformat.yml        # Configuración del formato del documento
 |   └── metadata.yml         # Configuración de Metadatos del documento.
+├── docs/                  # Capítulos en formato .Rmd
+├── latex/                 # Plantillas y componentes LaTeX
+├── img/                   # Recursos visuales
 ├── GNUmakefile            # Comandos de construcción automatizados
-├── LICENSE                # Licencia Creative Commons BY-SA
+├── LICENSE                # Licencia "Creative Commons BY-SA"
 ├── CONTRIBUTING.md        # Guía para contribuir
 └── README.md              # Este documento
-
 ```
 
 ---
@@ -186,7 +185,7 @@ Puedes usar, modificar y compartir el material siempre que cites la fuente y man
 ## Enlaces Relacionados
 
 * Sitio del proyecto: *(próximamente)*
-* Repositorio oficial: [https://github.com/fitorec/manual-R-markdown](https://github.com/fitorec/manual-R-markdown)
+* Repositorio oficial: [https://github.com/fitorec/Revista-Aprendiendo-R](https://github.com/fitorec/Revista-Aprendiendo-R)
 * Autor: [@Fitorec](https://github.com/fitorec)
 
 ---
