@@ -1,0 +1,127 @@
+\twocolumn
+# Gráficos con R - Parte I
+
+En capítulos anteriores, vimos las funciones `curve()` y `barplot()` para graficar funciones matemáticas y frecuencias respectivamente. Estas son funciones base de R para la visualización, sobre las cuales se fundamenta el manejo gráfico en R.
+
+## Función `curve()`
+
+Esta función permite graficar una función matemática continua en un rango especificado.
+
+- Sintaxis básica: 
+  ```R
+  curve(
+    expr, # The name of a function
+    from,
+    to,
+    col,
+    lwd,
+    main,
+    ylab
+  )
+  ```
+- Útil para visualizar densidades, funciones de distribución y cualquier función matemática expresable en R.
+
+## Función `barplot()`
+
+Crea gráficos de barras a partir de vectores o tablas de frecuencias.
+
+- Sintaxis básica:
+  ```R
+  barplot(
+    height,
+    names.arg,
+    col,
+    main,
+    ylab
+  )
+  ```
+- Ideal para representar datos discretos o categóricos y sus frecuencias.
+
+---
+
+## Combinando curvas en un mismo gráfico
+
+Podemos superponer varias curvas con `curve()` usando `add = TRUE`.
+
+Aquí un ejemplo combinando distribución normal, exponencial y uniforme.
+
+```{r, echo=TRUE}
+curve(
+  dnorm(x, mean=0, sd=1),
+  from=-2,
+  to=4,
+  col="blue",
+  lwd=2,
+  ylab="Densidad",
+  main="Normal, Exponencial y Uniforme"
+)
+curve(
+  dexp(x, rate=1),
+  from=0,
+  to=4,
+  col="#801100",
+  lwd=2,
+  add=TRUE
+)
+curve(
+  dunif(x, min=0, max=4),
+  from=0,
+  to=4,
+  col="purple",
+  lwd=2,
+  add=TRUE
+)
+legend(
+  "topright",
+  legend=c("Normal", "Exponencial", "Uniforme"),
+  col=c("blue", "#801100", "purple"),
+  lwd=2
+)
+```
+
+---
+
+## Comparación de barras entre distribuciones discretas
+
+Compararemos las distribuciones Poisson, Binomial y Geométrica con barras.
+
+```{r, echo=TRUE}
+# Valores
+x_pois <- 0:15
+x_binom <- 0:15
+x_geom <- 0:15
+
+# Probabilidades
+pois_vals <- dpois(
+ x_pois, lambda=5
+)
+binom_vals <- dbinom(
+ x_binom, size=15, prob=0.4
+)
+geom_vals <- dgeom(
+ x_geom, prob=0.3
+)
+
+# Para barras juntas, creamos matriz
+vals_matrix <- rbind(
+  pois_vals, binom_vals, geom_vals
+)
+
+# Ajustamos espacio para barras lado a lado
+barplot(
+  vals_matrix,
+  beside=TRUE,
+  col=c("red", "orange", "blue"),
+  names.arg=0:15,
+  ylim=c(0, 0.35),
+  main="Poisson, Binomial y Geométrica",
+  ylab="Probabilidad", xlab="Valor"
+)
+
+legend(
+  "topright",
+  legend=c("Poisson", "Binomial", "Geométrica"),
+  fill=c("red", "orange", "blue")
+)
+```
+\onecolumn

@@ -1,0 +1,185 @@
+
+
+\twocolumn
+\onecolumn
+
+
+# Gráficos II
+
+En este capítulo exploraremos distintos tipos de representaciones gráficas muy utilizadas en el análisis exploratorio de datos: **histogramas**, **boxplots**, **diagramas de tallos y hojas**, y **gráficos de pastel**.  
+Estas herramientas permiten visualizar la **distribución**, **variabilidad** y **composición** de los datos, ayudándonos a obtener una comprensión inicial antes de aplicar métodos estadísticos más complejos.
+
+---
+
+## 1. Histogramas
+
+### Concepto
+
+Un **histograma** muestra la distribución de frecuencias de un conjunto de datos numéricos.  
+Los valores se agrupan en **intervalos** (o “bins”) y la altura de cada barra indica la cantidad de observaciones dentro de ese rango.
+
+Este tipo de gráfico es ideal para observar:
+- La **forma de la distribución** (simétrica, sesgada, bimodal, etc.)
+- La **concentración** de valores.
+- La presencia de **valores atípicos**.
+
+### Ejemplo
+
+```{r histograms, echo=TRUE, fig.width=8, fig.height=6}
+# Histogramas de las variables numéricas del conjunto iris
+par(mfrow=c(2,2))
+hist(
+  iris_csv$sepal.length,
+  main="Histograma de Sepal Length",
+  xlab="Longitud del sépalo",
+  col="skyblue",
+  border="white"
+)
+hist(
+  iris_csv$sepal.width,
+  main="Histograma de Sepal Width",
+  xlab="Ancho del sépalo",
+  col="lightgreen", border="white"
+)
+hist(
+ iris_csv$petal.length,
+ main="Histograma de Petal Length",
+ xlab="Longitud del pétalo",
+ col="lightcoral",
+ border="white"
+)
+hist(
+  iris_csv$petal.width,
+  main="Histograma de Petal Width",
+  xlab="Ancho del pétalo",
+  col="khaki",
+  border="white"
+)
+#
+par(mfrow=c(1,1))
+```
+
+---
+
+## 2. Diagramas de Caja (Boxplots)
+
+### Concepto
+
+El **boxplot** o **diagrama de caja y bigotes** resume visualmente la **dispersión** y **asimetría** de los datos.
+Se basa en los **cuartiles** y muestra de forma clara:
+
+* La **mediana** (línea central).
+* Los **cuartiles 1 y 3** (límite inferior y superior de la caja).
+* Los **valores atípicos** (puntos fuera de los “bigotes”).
+
+### Ejemplo
+
+```{r boxplots, echo=TRUE, fig.width=8, fig.height=6}
+boxplot(
+  iris_csv[, 1:4],
+  main = "Boxplots de características del Iris",
+  col = c("lightblue", "lightgreen", "lightpink", "lightyellow"),
+  names = c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width"),
+  las = 2
+)
+```
+
+---
+
+## 3. Diagramas de Tallos y Hojas
+
+### Concepto
+
+El **diagrama de tallos y hojas** (stem-and-leaf plot) es una herramienta semigráfica que muestra la forma de la distribución de datos numéricos, manteniendo los **valores originales**.
+Permite identificar rápidamente la **dispersión** y la **frecuencia** de los datos sin perder detalle.
+
+### Ejemplo
+
+```{r stem-and-leaf, echo=TRUE}
+stem(iris_csv$sepal.length, scale = 1)
+stem(iris_csv$petal.length, scale = 1)
+```
+
+---
+
+## 4. Gráfico de Pastel
+
+### Concepto
+
+El **gráfico de pastel** (o “pie chart”) se usa para representar la **proporción relativa** de categorías dentro de un conjunto.
+Cada sector representa una clase, y su tamaño depende de su frecuencia.
+
+Es ideal para variables **categóricas** o **de clasificación** (por ejemplo, especies de flores).
+
+### Ejemplo
+
+```{r pie-chart, echo=TRUE, fig.width=6, fig.height=6}
+# Contar la frecuencia de cada clase
+class_freq <- table(iris_csv$class)
+
+# Gráfico de pastel
+pie(
+  class_freq,
+  main = "Distribución de clases (Iris)",
+  col = c("lightblue", "lightgreen", "lightpink"),
+  labels = paste(names(class_freq), "(", class_freq, ")", sep = "")
+)
+```
+
+---
+
+## 5. Combinación de Gráficos: Pie 3D y Barras
+
+### Concepto
+
+La combinación de gráficos nos permite **comparar proporciones y frecuencias absolutas** simultáneamente.
+Aquí combinaremos un **gráfico de pastel 3D** con un **gráfico de barras**, para mostrar la distribución de las clases de flores tanto visual como cuantitativamente.
+
+### Ejemplo
+
+```{r pie3d-barplot, echo=TRUE, fig.width=9, fig.height=5}
+# Instalar y cargar el paquete plotrix si no está disponible
+if (!require("plotrix")) install.packages("plotrix", quiet=TRUE)
+library(plotrix)
+
+# Definir los colores
+colores <- c("lightblue", "lightgreen", "lightpink")
+
+# Crear una ventana de gráficos de 1 fila, 2 columnas
+par(mfrow=c(1,2))
+
+# Pie 3D
+pie3D(
+  class_freq,
+  labels = names(class_freq),
+  main = "Distribución de clases (Pie 3D)",
+  explode = 0.1,
+  col = colores
+)
+
+# Gráfico de barras
+barplot(
+  class_freq,
+  main = "Número de muestras por clase",
+  col = colores,
+  ylim = c(0, max(class_freq) + 10),
+  ylab = "Frecuencia",
+  xlab = "Clase"
+)
+
+par(mfrow=c(1,1))
+```
+
+---
+
+## Conclusión
+
+Los distintos tipos de gráficos explorados en este capítulo permiten visualizar de forma clara y efectiva:
+
+* La **distribución** de los valores (histogramas y tallos y hojas),
+* La **variabilidad** y **presencia de outliers** (boxplots),
+* Y la **composición categórica** (gráficos de pastel).
+
+El dominio de estas herramientas visuales es esencial para interpretar los datos antes de aplicar modelos estadísticos o de aprendizaje automático.
+
+---

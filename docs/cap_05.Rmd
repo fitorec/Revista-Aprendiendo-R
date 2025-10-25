@@ -1,0 +1,181 @@
+# Distribuciones Estadisticas en R
+
+En R, el soporte para distribuciones estadísticas sigue un sistema de nomenclatura estandarizado que facilita la llamada a funciones para cálculo de densidades, probabilidades, cuantiles y generación de números aleatorios.
+
+## Sistema de nomenclatura
+
+Las funciones que soportan distribuciones estadística en R comienzan con un prefijo que indica su funcionalidad:
+
+- `d` : Density (densidad de probabilidad o función de masa).
+- `p` : Probability (función de distribución acumulada).
+- `q` : Quantile (cuantil o inversa de la función acumulada).
+- `r` : Random (generador de números aleatorios).
+
+A continuación, se coloca el nombre abreviado de la distribución. Por ejemplo, para la distribución normal:
+
+- `dnorm()`, `pnorm()`, `qnorm()`, `rnorm()`
+
+## Distribuciones comunes en R
+
+| Tipo       | Nombre en R | Descripción breve                                       |
+|------------|-------------|---------------------------------------------------------|
+| Continua   | `norm`      | Normal (gaussiana).                                     |
+| Continua   | `exp`       | Exponencial.                                            |
+| Continua   | `unif`      | Uniforme continua.                                      |
+| Continua   | `gamma`     | Distribución Gamma.                                     |
+| Continua   | `weibull`   | Weibull.                                                |
+| Continua   | `beta`      | Beta.                                                   |
+| Continua   | `chisq`     | Chi-cuadrado.                                           |
+| Continua   | `t`         | t de Student.                                           |
+| Continua   | `f`         | F de Fisher.                                            |
+| Continua   | `lnorm`     | Log-normal.                                             |
+| Continua   | `cauchy`    | Cauchy.                                                 |
+| Continua   | `wilcox`    | Wilcoxon.                                               |
+| Discreta   | `binom`     | Binomial.                                               |
+| Discreta   | `pois`      | Poisson.                                                |
+| Discreta   | `geom`      | Geométrica.                                             |
+| Discreta   | `nbinom`    | Binomial negativa.                                      |
+| Discreta   | `hyper`     | Hipergeométrica.                                        |
+
+A continuación vamos a ver alguna de ellas para esto vamos a usar el conjunto de funciones con prefijo `d` para obtener su densidad y graficar la curva de estas distribuciones.
+
+---
+
+\twocolumn
+
+## Distribuciones Continuas
+
+### Distribución Normal
+
+- **Descripción:** Distribución continua simétrica, en forma de campana, ampliamente usada para modelar fenómenos naturales.
+- **Uso:** Modelar variables continuas como alturas, pesos o errores en mediciones.
+- **Definición:**
+
+\[
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2} \left(\frac{x - \mu}{\sigma}\right)^2}
+\]
+
+```{r, echo=TRUE}
+curve(
+  dnorm(x, mean=0, sd=1),
+  from=-4,
+  to=4,
+  col="blue",
+  lwd=2,
+  ylab="Densidad",
+  main="Distribución Normal estándar"
+)
+```
+
+### Distribución Exponencial
+
+- **Descripción:** Modela tiempos entre eventos que ocurren a una tasa constante.
+- **Uso:** Tiempo de espera, duración de vida.
+- **Definición:**
+
+$$
+f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+$$
+
+
+```{r, echo=TRUE}
+curve(
+  dexp(x, rate=1),
+  from=0,
+  to=5,
+  col="green",
+  lwd=2,
+  ylab="Densidad",
+  main="Distribución Exponencial"
+)
+```
+
+### Distribución Uniforme Continua
+
+- **Descripción:** Todos los valores en un intervalo tienen la misma probabilidad.
+- **Uso:** Variables aleatorias con rango limitado y sin sesgo.
+- **Definición:**
+
+$$
+f(x) = \frac{1}{b-a}, \quad x \in [a,b]
+$$
+
+```{r, echo=TRUE}
+curve(
+  dunif(x, min=0, max=1),
+  from=0,
+  to=1,
+  col="purple",
+  lwd=2,
+  ylab="Densidad",
+  main="Distribución Uniforme Continua"
+)
+```
+
+---
+
+## Distribuciones Discretas
+
+### Distribución Binomial
+
+- **Descripción:** Modela el número de éxitos en n ensayos independientes con probabilidad p.
+- **Uso:** Éxitos/fracaso, conteos de eventos.
+- **Definición:**
+
+$$
+P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k=0,1,\dots,n
+$$
+
+
+```{r, echo=TRUE}
+barplot(
+  dbinom(0:10, size=10, prob=0.5),
+  col="orange",
+  main="Distribución Binomial",
+  ylab="Probabilidad",
+  names.arg=0:10
+)
+```
+
+### Distribución Poisson
+
+- **Descripción:** Modela el número de eventos en un intervalo fijo cuando ocurren con tasa constante.
+- **Uso:** Conteo de eventos raros como llamadas, accidentes.
+- **Definición:**
+
+$$
+P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k=0,1,2,\dots
+$$
+
+
+```{r, echo=TRUE}
+barplot(
+  dpois(0:15, lambda=5),
+  col="red",
+  main="Distribución Poisson",
+  ylab="Probabilidad",
+  names.arg=0:15
+)
+```
+
+### Distribución Geométrica
+
+- **Descripción:** Número de ensayos hasta el primer éxito.
+- **Uso:** Modelos de “primer evento”.
+- **Definición:**
+
+$$
+P(X=k) = p (1-p)^{k-1}, \quad k = 1, 2, \dots
+$$
+
+```{r, echo=TRUE}
+barplot(
+  dgeom(0:15, prob=0.3),
+  col="brown",
+  main="Distribución Geométrica",
+  ylab="Probabilidad",
+  names.arg=0:15
+)
+```
+
+\onecolumn

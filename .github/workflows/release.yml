@@ -33,7 +33,7 @@ jobs:
 
       - name: 📀 Install R packages
         run: |
-          Rscript -e 'install.packages(c("rmarkdown", "yaml", "readxl", "writexl"), repos="https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("rmarkdown", "yaml", "readxl", "writexl", "scatterplot3d"), repos="https://cloud.r-project.org")'
 
       - name: 📄 Build PDF
         run: make build

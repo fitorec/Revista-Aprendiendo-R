@@ -1,0 +1,171 @@
+
+
+\twocolumn
+\onecolumn
+
+
+# Gráficos III
+
+En este capítulo aprenderemos sobre los **polígonos de frecuencia**, las **gráficas de puntos** y las **representaciones tridimensionales (3D)**.  
+Estas técnicas complementan el análisis exploratorio, permitiendo observar relaciones y distribuciones de forma más visual e intuitiva.
+
+---
+
+## 1. Polígonos de Frecuencia
+
+### Concepto
+
+Un **polígono de frecuencia** es una representación de la distribución de los datos, similar al histograma, pero en lugar de usar barras se trazan líneas que conectan los puntos medios de cada intervalo.  
+El **polígono acumulado** permite ver cómo se acumulan las frecuencias a lo largo del rango de valores.
+
+Estos gráficos se usan para:
+- Comparar dos o más distribuciones.
+- Analizar la forma de los datos (asimetría, concentración, dispersión).
+
+### 1.1 Polígono de Frecuencia (Sepal y Petal Length)
+
+```{r polygon-freq, echo=TRUE, fig.width=8, fig.height=6}
+# Polígono de frecuencia para sepal-length y petal-length
+hist_sepal <- hist(iris_csv$sepal.length, plot=FALSE)
+hist_petal <- hist(iris_csv$petal.length, plot=FALSE)
+
+# Dibujar histograma base
+plot(hist_sepal, col=rgb(0,0,1,0.3), main="Polígonos de frecuencia (Length)", xlab="Longitud", ylab="Frecuencia")
+# Polígono de frecuencia Sepal
+lines(hist_sepal$mids, hist_sepal$counts, type="b", col="blue", lwd=2)
+# Polígono de frecuencia Petal
+lines(hist_petal$mids, hist_petal$counts, type="b", col="red", lwd=2)
+legend("topright", legend=c("Sepal Length", "Petal Length"), col=c("blue","red"), lty=1, lwd=2)
+```
+
+### 1.2 Polígono de Frecuencia Acumulada (Sepal y Petal Width)
+
+```{r polygon-freq-acc, echo=TRUE, fig.width=8, fig.height=6}
+# Polígonos acumulados
+hist_sepal_w <- hist(iris_csv$sepal.width, plot=FALSE)
+hist_petal_w <- hist(iris_csv$petal.width, plot=FALSE)
+
+# Histograma base
+plot(hist_sepal_w, col=rgb(0,1,0,0.3), main="Polígonos de frecuencia acumulada (Width)", xlab="Ancho", ylab="Frecuencia acumulada")
+
+# Polígonos acumulados
+lines(hist_sepal_w$mids, cumsum(hist_sepal_w$counts), type="b", col="green", lwd=2)
+lines(hist_petal_w$mids, cumsum(hist_petal_w$counts), type="b", col="orange", lwd=2)
+legend("bottomright", legend=c("Sepal Width (acumulado)", "Petal Width (acumulado)"), col=c("green","orange"), lty=1, lwd=2)
+```
+
+---
+
+## 2. Gráficos de Puntos (Dot Plots)
+
+### Concepto
+
+El **gráfico de puntos** representa los valores individuales mediante símbolos (por ejemplo, círculos).
+Es útil para:
+
+* Observar la **dispersión** de los datos.
+* Comparar distribuciones pequeñas.
+* Mostrar frecuencias de categorías o valores.
+
+### 2.1 Frecuencia por Clase
+
+```{r dotplot-class, echo=TRUE, fig.width=7, fig.height=5}
+# Frecuencia por clase
+class_freq <- table(iris_csv$class)
+dotchart(class_freq, main="Frecuencia de muestras por clase", xlab="Frecuencia", col="blue", pch=19)
+```
+
+### 2.2 Gráfico de puntos: Sepal (Length vs Width)
+
+```{r dotplot-sepal, echo=TRUE, fig.width=7, fig.height=5}
+plot(
+  iris_csv$sepal.length, iris_csv$sepal.width,
+  main="Gráfico de puntos: Sepal Length vs Sepal Width",
+  xlab="Sepal Length",
+  ylab="Sepal Width",
+  pch=19,
+  col="darkgreen"
+)
+```
+
+### 2.3 Gráfico de puntos: Petal (Length vs Width)
+
+```{r dotplot-petal, echo=TRUE, fig.width=7, fig.height=5}
+plot(
+  iris_csv$petal.length, iris_csv$petal.width,
+  main="Gráfico de puntos: Petal Length vs Petal Width",
+  xlab="Petal Length",
+  ylab="Petal Width",
+  pch=19,
+  col="darkred"
+)
+```
+
+---
+
+## 3. Gráfico 3D
+
+### Concepto
+
+Los **gráficos 3D** permiten visualizar simultáneamente tres variables numéricas, agregando una **tercera dimensión** (eje Z).
+En este caso, usaremos el paquete `scatterplot3d` para representar:
+
+* **Eje X:** Sepal Width
+* **Eje Y:** Petal Width
+* **Eje Z:** Sepal Length
+* **Color:** Clase (`class`)
+
+```{r scatter3d, echo=TRUE, fig.width=8, fig.height=6}
+# Instalar y cargar el paquete scatterplot3d si no está disponible
+if (!require("scatterplot3d")) install.packages("scatterplot3d", quiet=TRUE)
+library(scatterplot3d)
+
+# Asignar colores por clase
+colors <- c("blue", "green", "red")[as.factor(iris_csv$class)]
+
+# Gráfico 3D
+scatterplot3d(
+  x = iris_csv$sepal.width,
+  y = iris_csv$petal.width,
+  z = iris_csv$sepal.length,
+  color = colors,
+  pch = 19,
+  main = "Gráfico 3D - Iris Dataset",
+  xlab = "Sepal Width",
+  ylab = "Petal Width",
+  zlab = "Sepal Length"
+)
+legend("topright", legend=levels(as.factor(iris_csv$class)), col=c("blue","green","red"), pch=19)
+```
+
+---
+
+## 4. Combinación de Gráficos
+
+Para concluir, a continuación se muestra un ejemplo donde se combinan los tres tipos de gráficos (polígono de frecuencia, gráfico de puntos y 3D) en una misma ventana.
+Más adelante, profundizaremos en el uso de **layouts y grids** para gestionar múltiples gráficos en columnas y filas.
+
+```{r combined-plots, echo=TRUE, fig.width=10, fig.height=7}
+# Configurar una grilla de 1 fila x 3 columnas
+par(mfrow=c(1,3))
+
+# Polígono de frecuencia
+plot(hist_sepal, col="lightblue", main="Polígono de Frecuencia", xlab="Sepal Length", ylab="Frecuencia")
+lines(hist_sepal$mids, hist_sepal$counts, type="b", col="blue", lwd=2)
+
+# Gráfico de puntos
+plot(iris_csv$sepal.length, iris_csv$sepal.width, main="Dot Plot (Sepal)", pch=19, col="darkgreen", xlab="Length", ylab="Width")
+
+# Gráfico 3D
+scatterplot3d(
+  x = iris_csv$sepal.width,
+  y = iris_csv$petal.width,
+  z = iris_csv$sepal.length,
+  color = colors,
+  pch = 19,
+  main = "3D Scatterplot"
+)
+
+# Restablecer layout
+par(mfrow=c(1,1))
+```

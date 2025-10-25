@@ -1,0 +1,163 @@
+# Gráficos IV
+
+## Gráficos complejos y sistema Grid de gráficos
+
+En este capítulo profundizaremos en el uso del **sistema de cuadrículas (grid)** en R para combinar múltiples visualizaciones en una misma ventana gráfica.  
+R ofrece varias herramientas para crear **gráficos compuestos**, entre las más importantes están los parámetros de la función `par()` como `mfrow` y el uso de `layout()`.
+
+---
+
+## 1. El sistema Grid y el parámetro `mfrow`
+
+La función `par()` controla los parámetros gráficos globales.  
+El argumento `mfrow` permite dividir la ventana gráfica en una matriz de filas y columnas para mostrar múltiples gráficos.
+
+Por ejemplo:
+```r
+par(mfrow = c(filas, columnas))
+```
+
+El parámetro `mfrow=c(3,1)` divide el área de dibujo en **3 filas y 1 columna**, dibujando los gráficos de arriba hacia abajo.
+
+---
+
+## 2. Ejemplo: Tres gráficos en una columna
+
+A continuación, generaremos tres gráficos basados en la **distribución normal**:
+
+1. Un **histograma**
+2. Un **boxplot**
+3. Una **curva lineal**
+
+```{r grid-example-1, echo=TRUE, fig.width=7, fig.height=9}
+set.seed(42)
+datos_normales <- rnorm(100, mean=50, sd=10)
+
+par(mfrow=c(3,1))
+
+# Histograma
+hist(datos_normales, main="Histograma - Distribución Normal", col="lightblue", border="white")
+
+# Boxplot
+boxplot(datos_normales, main="Diagrama de Caja", col="lightgreen", horizontal=TRUE)
+
+# Curva lineal
+x <- seq(1, 100, length=100)
+y <- datos_normales[order(datos_normales)]
+plot(x, y, type="l", col="red", lwd=2, main="Curva Lineal", xlab="Índice", ylab="Valor")
+
+# Restablecer
+par(mfrow=c(1,1))
+```
+
+> *Nota:* `par(mfrow=c(3,1))` organiza tres gráficos verticalmente, optimizando el espacio visual y facilitando la comparación.
+
+---
+
+## 3. Múltiples visualizaciones con `grid` y `layout`
+
+Cuando se requiere un control más preciso de las posiciones y tamaños de los gráficos, se usa **`layout()`**, que permite definir un diseño mediante una **matriz numérica**.
+
+---
+
+## 4. Ejemplo con dos filas (Histogramas + Boxplot combinado)
+
+Aquí crearemos un gráfico compuesto de dos filas:
+
+* **Fila 1:** Dos histogramas del ancho (`width`) — uno para Sepal y otro para Petal — con una línea vertical en la media.
+* **Fila 2:** Un boxplot comparando la longitud (`length`) de Sepal y Petal, también con líneas para sus medias aritméticas.
+
+```{r grid-example-2, echo=TRUE, fig.width=10, fig.height=8}
+# Configurar layout: 2 filas, primera con dos paneles, segunda con uno
+layout(matrix(c(1,2,3,3), nrow=2, byrow=TRUE))
+
+# Fila 1 - Histograma Sepal Width
+hist(iris_csv$sepal.width,
+     main="Histograma Sepal Width",
+     col="lightblue", border="white",
+     xlab="Sepal Width", ylab="Frecuencia")
+abline(v=mean(iris_csv$sepal.width), col="red", lwd=2, lty=2)
+legend("topright", legend="Media", col="red", lty=2)
+
+# Fila 1 - Histograma Petal Width
+hist(iris_csv$petal.width,
+     main="Histograma Petal Width",
+     col="lightgreen", border="white",
+     xlab="Petal Width", ylab="Frecuencia")
+abline(v=mean(iris_csv$petal.width), col="red", lwd=2, lty=2)
+
+# Fila 2 - Boxplot combinado
+boxplot(
+  iris_csv$sepal.length,
+  iris_csv$petal.length,
+  names=c("Sepal Length","Petal Length"),
+  col=c("lightblue","lightgreen"),
+  main="Comparación de Longitudes"
+)
+abline(h=mean(iris_csv$sepal.length), col="blue", lwd=2, lty=2)
+abline(h=mean(iris_csv$petal.length), col="green", lwd=2, lty=2)
+legend("bottomright", legend=c("Media Sepal","Media Petal"), col=c("blue","green"), lty=2)
+```
+
+---
+
+## 5. Uso de `layout()` con una matriz compleja de 4 elementos
+
+En este último ejemplo, crearemos una **composición de 2 filas × 2 columnas** que contenga:
+
+1. Un gráfico de pastel (clases)
+2. Un histograma (Petal Width)
+3. Una curva lineal (Sepal Length)
+4. Un gráfico combinado de dispersión y tendencia
+
+Cada gráfico será diferente para mostrar el potencial del sistema `layout()`.
+
+```{r layout-example, echo=TRUE, fig.width=10, fig.height=8}
+# Preparar layout
+layout(matrix(1:4, nrow=2, byrow=TRUE))
+par(mar=c(4,4,2,1))
+
+# Gráfico 1: Pie chart de las clases
+class_freq <- table(iris_csv$class)
+pie(class_freq, main="Distribución de clases", col=c("lightblue","lightgreen","lightpink"))
+
+# Gráfico 2: Histograma de Petal Width
+hist(iris_csv$petal.width,
+     main="Histograma Petal Width",
+     col="lightcoral", border="white",
+     xlab="Ancho", ylab="Frecuencia")
+abline(v=mean(iris_csv$petal.width), col="blue", lwd=2, lty=2)
+
+# Gráfico 3: Curva lineal
+x <- seq_along(iris_csv$sepal.length)
+y <- sort(iris_csv$sepal.length)
+plot(x, y, type="l", col="purple", lwd=2, main="Curva - Sepal Length")
+
+# Gráfico 4: Dispersión con tendencia
+plot(iris_csv$sepal.width, iris_csv$petal.width,
+     main="Dispersión y tendencia", xlab="Sepal Width", ylab="Petal Width",
+     col="gray", pch=19)
+abline(lm(iris_csv$petal.width ~ iris_csv$sepal.width), col="red", lwd=2)
+
+# Restablecer layout
+layout(1)
+```
+
+### Explicación de parámetros principales
+
+* `layout(matrix(1:4, nrow=2, byrow=TRUE))`:
+  Define una cuadrícula de **2 filas y 2 columnas** donde se colocan los gráficos en orden.
+
+* `par(mar=c(4,4,2,1))`:
+  Ajusta los márgenes de cada panel (inferior, izquierdo, superior, derecho).
+
+* `abline()`:
+  Agrega líneas de referencia, útiles para mostrar tendencias o medias.
+
+* `legend()`:
+  Añade leyendas para identificar elementos visuales.
+
+---
+
+> *El uso de `par(mfrow)` y `layout()` es esencial cuando se desea comunicar múltiples aspectos de un conjunto de datos en una sola figura, especialmente en análisis exploratorios y reportes científicos.*
+
